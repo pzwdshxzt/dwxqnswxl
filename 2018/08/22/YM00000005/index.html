@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>arraylist（jdk1.8） 源码阅读记录 | My mother wouldn&#39;t let me play with fools.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Java源码阅读ArrayList" />
+  
+  
+  
+  
+  <meta name="description" content="ArrayListArrayList是基于数组实现的，是一个动态数组，其容量能自动增长，类似于C语言中的动态申请内存，动态增长内存。  ArrayList不是线程安全的，只能用在单线程环境下 多线程环境下可以考虑用Collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类 也可以使用concurrent并发包下的CopyOnWriteArr">
+<meta name="keywords" content="Java,源码阅读,ArrayList">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList（JDK1.8） 源码阅读记录">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/08/22/YM00000005/index.html">
+<meta property="og:site_name" content="My mother wouldn&#39;t let me play with fools.">
+<meta property="og:description" content="ArrayListArrayList是基于数组实现的，是一个动态数组，其容量能自动增长，类似于C语言中的动态申请内存，动态增长内存。  ArrayList不是线程安全的，只能用在单线程环境下 多线程环境下可以考虑用Collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类 也可以使用concurrent并发包下的CopyOnWriteArr">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-23T09:29:17.101Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArrayList（JDK1.8） 源码阅读记录">
+<meta name="twitter:description" content="ArrayListArrayList是基于数组实现的，是一个动态数组，其容量能自动增长，类似于C语言中的动态申请内存，动态增长内存。  ArrayList不是线程安全的，只能用在单线程环境下 多线程环境下可以考虑用Collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类 也可以使用concurrent并发包下的CopyOnWriteArr">
+  
+    <link rel="alternate" href="/atom.xml" title="My mother wouldn&#39;t let me play with fools." type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.png">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 10px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-YM00000005" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      ArrayList（JDK1.8） 源码阅读记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/22/YM00000005/" class="article-date">
+	  <time datetime="2018-08-22T03:22:41.000Z" itemprop="datePublished">2018-08-22</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/源码阅读/">源码阅读</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<h1 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h1><p>ArrayList是基于<code>数组</code>实现的，是一个<code>动态数组</code>，其容量能自动增长，类似于C语言中的动态申请内存，动态增长内存。</p>
+<ul>
+<li><strong>ArrayList<code>不是线程安全</code>的，只能用在<code>单线程环境</code>下</strong></li>
+<li><strong>多线程环境下可以考虑用<code>Collections.synchronizedList(List l)函数</code>返回一个线程安全的ArrayList类</strong></li>
+<li><strong>也可以使用concurrent并发包下的<code>CopyOnWriteArrayList类</code></strong></li>
+<li><strong>ArrayList<code>实现了Serializable接口</code>，因此它支持序列化，能够通过序列化传输</strong></li>
+<li><strong>实现了<code>RandomAccess接口</code>，支持快速随机访问，实际上就是通过下标序号进行快速访问</strong></li>
+<li><strong>实现了<code>Cloneable接口</code>，能被克隆</strong></li>
+</ul>
+<hr>
+<h2 id="根据JDK版本的不同-，构造方法也不同"><a href="#根据JDK版本的不同-，构造方法也不同" class="headerlink" title="根据JDK版本的不同 ，构造方法也不同"></a>根据JDK版本的不同 ，构造方法也不同</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*	JDK 1.8</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Default initial capacity.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * first element is added.</span></span><br><span class="line"><span class="comment"> * Shared empty array instance used for default sized empty instances. We</span></span><br><span class="line"><span class="comment"> * distinguish this from EMPTY_ELEMENTDATA to know how much to inflate when</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Shared empty array instance used for empty instances.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 上面这个对象数组就是其存储元素的数据结构，前面有一个java关键字transient</span></span><br><span class="line"><span class="comment">  * 这个关键字是去序列化的意思，即，在这个类序列化后保存到磁盘或者输出到输出流的时候</span></span><br><span class="line"><span class="comment">  * 这个对象数组是不被保存或者输出的。(这个不是下面的翻译，对transient解释)</span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  * The array buffer into which the elements of the ArrayList are stored.</span></span><br><span class="line"><span class="comment">  * The capacity of the ArrayList is the length of this array buffer. Any</span></span><br><span class="line"><span class="comment">  * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span></span><br><span class="line"><span class="comment">  * will be expanded to DEFAULT_CAPACITY when the first element is added.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">transient</span> Object[] elementData; <span class="comment">// non-private to simplify nested class access</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ArrayList带容量大小的构造函数。  </span></span><br><span class="line"><span class="comment"> * Constructs an empty list with the specified initial capacity.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  initialCapacity  the initial capacity of the list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IllegalArgumentException if the specified initial capacity</span></span><br><span class="line"><span class="comment"> *         is negative</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">       <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">       <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                          initialCapacity);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 无参构造方法构造的ArrayList的默认返回空数组</span></span><br><span class="line"><span class="comment"> * Constructs an empty list with an initial capacity of ten.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 带有Collection参数的构造方法</span></span><br><span class="line"><span class="comment"> * Constructs a list containing the elements of the specified</span></span><br><span class="line"><span class="comment"> * collection, in the order they are returned by the collection's</span></span><br><span class="line"><span class="comment"> * iterator.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> c the collection whose elements are to be placed into this list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if the specified collection is null</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">   elementData = c.toArray();</span><br><span class="line">   <span class="keyword">if</span> ((size = elementData.length) != <span class="number">0</span>) &#123;</span><br><span class="line">       <span class="comment">// c.toArray might (incorrectly) not return Object[] (see 6260652)</span></span><br><span class="line">       <span class="keyword">if</span> (elementData.getClass() != Object[].class)</span><br><span class="line">           elementData = Arrays.copyOf(elementData, size, Object[].class);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="comment">// replace with empty array.</span></span><br><span class="line">       <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* JDK 1.7/1.6</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">* Constructs an empty list with the specified initial capacity. </span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span>  initialCapacity  the initial capacity of the list </span></span><br><span class="line"><span class="comment">  * <span class="doctag">@throws</span> IllegalArgumentException if the specified initial capacity </span></span><br><span class="line"><span class="comment">  *         is negative </span></span><br><span class="line"><span class="comment">  */</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;  </span><br><span class="line">     <span class="keyword">super</span>();  </span><br><span class="line">     <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)  </span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+  </span><br><span class="line">                                            initialCapacity);  </span><br><span class="line">     <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];  </span><br><span class="line"> &#125;  </span><br><span class="line"></span><br><span class="line"> <span class="comment">/** </span></span><br><span class="line"><span class="comment">  * 无参构造直接返回了this（10）;默认10 这也是与1.8不同的地方</span></span><br><span class="line"><span class="comment">  * Constructs an empty list with an initial capacity of ten. </span></span><br><span class="line"><span class="comment">  */</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">     <span class="keyword">this</span>(<span class="number">10</span>);  </span><br><span class="line"> &#125;  </span><br><span class="line"></span><br><span class="line"> <span class="comment">/** </span></span><br><span class="line"><span class="comment">  * Constructs a list containing the elements of the specified </span></span><br><span class="line"><span class="comment">  * collection, in the order they are returned by the collection's </span></span><br><span class="line"><span class="comment">  * iterator. </span></span><br><span class="line"><span class="comment">  * 在这1.8也多了一个判断</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> c the collection whose elements are to be placed into this list </span></span><br><span class="line"><span class="comment">  * <span class="doctag">@throws</span> NullPointerException if the specified collection is null </span></span><br><span class="line"><span class="comment">  */</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;  </span><br><span class="line">     elementData = c.toArray();  </span><br><span class="line">     size = elementData.length;  </span><br><span class="line">     <span class="comment">// c.toArray might (incorrectly) not return Object[] (see 6260652)  </span></span><br><span class="line">     <span class="keyword">if</span> (elementData.getClass() != Object[].class)  </span><br><span class="line">         elementData = Arrays.copyOf(elementData, size, Object[].class);  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="为什么用到-transient？"><a href="#为什么用到-transient？" class="headerlink" title="为什么用到 transient？"></a>为什么用到 transient？</h3><p>这就跟这个ArrayList的特性有关，我们知道ArrayList的容量，也就是这个数组的容量，一般都是预留一些容量，等到容量不够时再拓展，那么就会出现容量还有冗余的情况，如果这时候进行序列化，整个数组都会被序列化，连后面没有意义空元素的也被序列化。这些是不应该被存储的。所以java的设计者，就为这个类提供了一个writeObject方法，在实现了Serializable接口的类，如果这个类提供了writeObject方法，那么在进行序列化的时候就会通过writeObject方法进行序列化，所以ArrayList的writeObject方法就会显式的为每个实际的数组元素进行序列化，只序列化有用的元素。</p>
+<hr>
+<h2 id="为什么源码中大量地调用了Arrays-copyof-和System-arraycopy-方法"><a href="#为什么源码中大量地调用了Arrays-copyof-和System-arraycopy-方法" class="headerlink" title="为什么源码中大量地调用了Arrays.copyof()和System.arraycopy()方法?"></a>为什么源码中大量地调用了Arrays.copyof()和System.arraycopy()方法?</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] copyOf(T[] original, <span class="keyword">int</span> newLength) &#123;</span><br><span class="line">    <span class="keyword">return</span> (T[]) copyOf(original, newLength, original.getClass());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T,U&gt; T[] copyOf(U[] original, <span class="keyword">int</span> newLength, Class&lt;? extends T[]&gt; newType) &#123;</span><br><span class="line">    T[] copy = ((Object)newType == (Object)Object[].class)</span><br><span class="line">        ? (T[]) <span class="keyword">new</span> Object[newLength]</span><br><span class="line">        : (T[]) Array.newInstance(newType.getComponentType(), newLength);</span><br><span class="line">    System.arraycopy(original, <span class="number">0</span>, copy, <span class="number">0</span>,</span><br><span class="line">                     Math.min(original.length, newLength));</span><br><span class="line">    <span class="keyword">return</span> copy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后都调用了System.arraycopy（）方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 该方法被标记了native，调用了系统的C/C++代码，在JDK中是看不到的，</span></span><br><span class="line"><span class="comment">* 但在openJDK中可以看到其源码。该函数实际上最终调用了C语言的memmove()函数，</span></span><br><span class="line"><span class="comment">* 因此它可以保证同一个数组内元素的正确复制 和移动，比一般的复制方法的实现效率要高很多，</span></span><br><span class="line"><span class="comment">* 很适合用来批量处理数组。Java强烈推荐在复制大量数组元素时用该方法，以取得更高的效率。</span></span><br><span class="line"><span class="comment">* 这也说明了ArrayList 与数组</span></span><br><span class="line"><span class="comment">*/</span>	</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">arraycopy</span><span class="params">(Object src,  <span class="keyword">int</span>  srcPos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        Object dest, <span class="keyword">int</span> destPos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">int</span> length)</span></span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="JDK1-6-开始扩容办法也不一样"><a href="#JDK1-6-开始扩容办法也不一样" class="headerlink" title="JDK1.6 开始扩容办法也不一样"></a>JDK1.6 开始扩容办法也不一样</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * JDK1.6</span></span><br><span class="line"><span class="comment"> * Increases the capacity of this &lt;tt&gt;ArrayList&lt;/tt&gt; instance, if </span></span><br><span class="line"><span class="comment"> * necessary, to ensure that it can hold at least the number of elements </span></span><br><span class="line"><span class="comment"> * specified by the minimum capacity argument. </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   minCapacity   the desired minimum capacity </span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;  </span><br><span class="line">     modCount++;  </span><br><span class="line">     <span class="keyword">int</span> oldCapacity = elementData.length;  </span><br><span class="line">     <span class="keyword">if</span> (minCapacity &gt; oldCapacity) &#123;  </span><br><span class="line">         Object oldData[] = elementData;  </span><br><span class="line">         <span class="keyword">int</span> newCapacity = (oldCapacity * <span class="number">3</span>)/<span class="number">2</span> + <span class="number">1</span>;  </span><br><span class="line">         <span class="keyword">if</span> (newCapacity &lt; minCapacity)  </span><br><span class="line">             newCapacity = minCapacity;  </span><br><span class="line">         <span class="comment">// minCapacity is usually close to size, so this is a win:  </span></span><br><span class="line">         elementData = Arrays.copyOf(elementData, newCapacity);  </span><br><span class="line">     &#125;  </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * JDK1.8 </span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * The maximum size of array to allocate.</span></span><br><span class="line"><span class="comment">  * Some VMs reserve some header words in an array.</span></span><br><span class="line"><span class="comment">  * Attempts to allocate larger arrays may result in</span></span><br><span class="line"><span class="comment">  * OutOfMemoryError: Requested array size exceeds VM limit</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_ARRAY_SIZE = Integer.MAX_VALUE - <span class="number">8</span>;</span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Increases the capacity to ensure that it can hold at least the</span></span><br><span class="line"><span class="comment">  * number of elements specified by the minimum capacity argument.</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> minCapacity the desired minimum capacity</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// overflow-conscious code</span></span><br><span class="line">      <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">      <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">          newCapacity = minCapacity;</span><br><span class="line">      <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">          newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">      <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">      elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> OutOfMemoryError();</span><br><span class="line">        <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">            Integer.MAX_VALUE :</span><br><span class="line">            MAX_ARRAY_SIZE;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1.7JDK开始使用的是位运算 </li>
+<li>在算出newCapacity时，其没有和ArrayList所定义的MAX_ARRAY_SIZE作比较，为什么没有进行比较呢，原因是jdk1.6没有定义这个MAX_ARRAY_SIZE最大容量，也就是说，其没有最大容量限制的，但是jdk1.7以上做了一个改进，进行了容量限制。</li>
+</ul>
+<hr>
+<h2 id="Java-集合中常见-checkForComodification-方法的作用-modCount和expectedModCount作用"><a href="#Java-集合中常见-checkForComodification-方法的作用-modCount和expectedModCount作用" class="headerlink" title="Java 集合中常见 checkForComodification()方法的作用? modCount和expectedModCount作用?"></a><a href="https://blog.csdn.net/weixin_40254498/article/details/81386920" target="_blank" rel="noopener">Java 集合中常见 checkForComodification()方法的作用? modCount和expectedModCount作用?</a></h2><hr>
+<h2 id="ArrayList-快速访问"><a href="#ArrayList-快速访问" class="headerlink" title="ArrayList 快速访问"></a>ArrayList 快速访问</h2><p>ArrayList基于数组实现，可以通过下标索引直接查找到指定位置的元素，因此查找效率高，但每次插入或删除元素，就要大量地移动元素，插入删除元素的效率低。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 先检查索引 然后校验操作正确</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> var1)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.rangeCheck(var1);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.elementData(var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://shopxcx.oss-cn-beijing.aliyuncs.com/menoy/wechat1.png',
+  alipayImage: 'https://shopxcx.oss-cn-beijing.aliyuncs.com/menoy/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/08/22/YM00000005/" target="_blank" title="ArrayList（JDK1.8） 源码阅读记录">https://www.dwxnqswxl.cn/2018/08/22/YM00000005/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/22/YM00000003/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JDK的弃儿：Vector、Stack、Hashtable、Enumeration
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/22/YM00000004/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java 集合中常见 checkForComodification()方法的作用_ modCount和expectedModCount作用_</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.</span> <span class="nav-text">ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#根据JDK版本的不同-，构造方法也不同"><span class="nav-number">1.1.</span> <span class="nav-text">根据JDK版本的不同 ，构造方法也不同</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么用到-transient？"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么用到 transient？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么源码中大量地调用了Arrays-copyof-和System-arraycopy-方法"><span class="nav-number">1.2.</span> <span class="nav-text">为什么源码中大量地调用了Arrays.copyof()和System.arraycopy()方法?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-6-开始扩容办法也不一样"><span class="nav-number">1.3.</span> <span class="nav-text">JDK1.6 开始扩容办法也不一样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-集合中常见-checkForComodification-方法的作用-modCount和expectedModCount作用"><span class="nav-number">1.4.</span> <span class="nav-text">Java 集合中常见 checkForComodification()方法的作用? modCount和expectedModCount作用?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-快速访问"><span class="nav-number">1.5.</span> <span class="nav-text">ArrayList 快速访问</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 My mother wouldn&#39;t let me play with fools. All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            My mother wouldn&#39;t let me play with fools.
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Huangjinxing All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
