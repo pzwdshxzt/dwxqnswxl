@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="业余时间学习java，回顾回顾经典算法。  [TOC] 插入排序 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]  代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &amp;">
+  <meta name="description" content="业余时间学习java，回顾经典算法。插入排序 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]  代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &amp;#123;    S">
 <meta name="keywords" content="基础,插入排序,冒泡排序,快速排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java进阶 - 经典排序">
 <meta property="og:url" content="https://www.dwxnqswxl.cn/2018/01/30/JC00000004/index.html">
 <meta property="og:site_name" content="My mother wouldn&#39;t let me play with fools.">
-<meta property="og:description" content="业余时间学习java，回顾回顾经典算法。  [TOC] 插入排序 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]  代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &amp;">
+<meta property="og:description" content="业余时间学习java，回顾经典算法。插入排序 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]  代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &amp;#123;    S">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-24T02:27:18.952Z">
+<meta property="og:updated_time" content="2018-08-24T03:10:27.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java进阶 - 经典排序">
-<meta name="twitter:description" content="业余时间学习java，回顾回顾经典算法。  [TOC] 插入排序 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]  代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &amp;">
+<meta name="twitter:description" content="业余时间学习java，回顾经典算法。插入排序 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]  代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &amp;#123;    S">
   
     <link rel="alternate" href="/atom.xml" title="My mother wouldn&#39;t let me play with fools." type="application/atom+xml">
   
@@ -195,10 +195,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>业余时间学习java，回顾回顾经典算法。</p>
-<hr>
-<p>[TOC]</p>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><blockquote>
+        <h2 id="业余时间学习java，回顾经典算法。"><a href="#业余时间学习java，回顾经典算法。" class="headerlink" title="业余时间学习java，回顾经典算法。"></a>业余时间学习java，回顾经典算法。</h2><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><blockquote>
 <p>插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    —— <a href="https://baike.baidu.com/item/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/7214992?fr=aladdin" target="_blank"> [ 百度百科 ]</a></p>
 </blockquote>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 插入排序</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"-----Start 插入排序-----"</span>);</span><br><span class="line">    System.out.println(Arrays.toString(array));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> temp = array[i];</span><br><span class="line">        <span class="keyword">while</span> (j &gt; -<span class="number">1</span> &amp;&amp; temp &lt; array[j]) &#123;</span><br><span class="line">            array[j + <span class="number">1</span>] = array[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (temp == array[i]) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        array[j + <span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(Arrays.toString(array));</span><br><span class="line">    System.out.println(<span class="string">"-----End 插入排序-----"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -296,9 +293,9 @@ var a = new Donate({
     </a>
   
   
-    <a href="/2017/12/16/JC00000001/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/30/LC00000003/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">java进阶 - 常用数据结构以及算法思想</div>
+      <div class="article-nav-title">Leetcode - 旋转数组</div>
     </a>
   
 </nav>
@@ -312,7 +309,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">1.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果"><span class="nav-number">1.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">2.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果-1"><span class="nav-number">2.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">3.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果-2"><span class="nav-number">3.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#业余时间学习java，回顾经典算法。"><span class="nav-number">1.</span> <span class="nav-text">业余时间学习java，回顾经典算法。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果"><span class="nav-number">2.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">3.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果-1"><span class="nav-number">3.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">4.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果-2"><span class="nav-number">4.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol>
     
     </div>
   </aside>

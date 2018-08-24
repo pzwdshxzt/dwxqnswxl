@@ -492,13 +492,10 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          业余时间学习java，回顾回顾经典算法。
-
-[TOC]
-插入排序
+          业余时间学习java，回顾经典算法。插入排序
 插入排序的基本思想是：每步将一个待排序的记录，按其关键码值的大小插入前面已经排序的文件中适当位置上，直到全部插入完为止。    ——  [ 百度百科 ]
 
-代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &#123;    System.out.println("-----Start 插入排序---...
+代码123456789101112131415161718192021 /**  * 插入排序  */ public void insertSort(int[] array) &#123;    System.out.println("-----Start 插入排序-----");    S...
         </p>
         <p class="article-more-link">
           <a href="/2018/01/30/JC00000004/#more">Read More</a>
@@ -520,7 +517,7 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
 
 
   
-    <article id="post-JC00000001"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-LC00000003"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -528,7 +525,7 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/12/16/JC00000001/">java进阶 - 常用数据结构以及算法思想</a>
+      <a class="article-title" href="/2018/01/30/LC00000003/">Leetcode - 旋转数组</a>
     </h1>
   
 
@@ -536,25 +533,37 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
     
     <div class="article-meta">
       
-	<a href="/2017/12/16/JC00000001/" class="article-date">
-	  <time datetime="2017-12-16T02:33:38.000Z" itemprop="datePublished">2017-12-16</time>
+	<a href="/2018/01/30/LC00000003/" class="article-date">
+	  <time datetime="2018-01-30T07:02:28.000Z" itemprop="datePublished">2018-01-30</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          常用数据结构数组、链表、堆、栈、队列、Hash表、二叉树等
-算法思想算法时间复杂度和空间复杂度的分析计算算法思想：递推、递归、穷举、贪心、分治、动态规划、迭代、分枝界限
-以下是部分代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818...
+          问题描述给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
+
+示例 1:
+输入: [1,2,3,4,5,6,7] 和 k = 3
+输出: [5,6,7,1,2,3,4]
+解释:
+向右旋转 1 步: [7,1,2,3,4,5,6]
+向右旋转 2 步: [6,7,1,2,3,4,5]
+向右旋转 3 步: [5,6,7,1,2,3,4]
+
+
+示例 2:
+输入: [-1,-100,3,99] 和 k = 2
+输出: [3,99,-1,-100]
+解释:
+向右旋转 1 步: [9...
         </p>
         <p class="article-more-link">
-          <a href="/2017/12/16/JC00000001/#more">Read More</a>
+          <a href="/2018/01/30/LC00000003/#more">Read More</a>
         </p>
       
     </div>
@@ -573,7 +582,7 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
 
 
   
-    <article id="post-JC00000003"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-LC00000004"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -581,7 +590,7 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/12/01/JC00000003/">Map遍历</a>
+      <a class="article-title" href="/2018/01/30/LC00000004/">Leetcode - 两数之和</a>
     </h1>
   
 
@@ -589,23 +598,30 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
     
     <div class="article-meta">
       
-	<a href="/2017/12/01/JC00000003/" class="article-date">
-	  <time datetime="2017-12-01T03:39:32.000Z" itemprop="datePublished">2017-12-01</time>
+	<a href="/2018/01/30/LC00000004/" class="article-date">
+	  <time datetime="2018-01-30T07:02:28.000Z" itemprop="datePublished">2018-01-30</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          Map遍历Map遍历的时候推荐使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出 key 所对应的 value。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效 率更高。如果是 JDK8，使用 Map.foreach 方法。  ———— 取自阿里巴巴java开发手册
-123456789101112...
+          问题描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
+
+示例:
+给定 nums = [2, 7, 11, 15], target = 9
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+
+
+解答123456789101112131415161718192021@Testpublic void testTwoSum() &#123;    int[] arrays = &#...
         </p>
         <p class="article-more-link">
-          <a href="/2017/12/01/JC00000003/#more">Read More</a>
+          <a href="/2018/01/30/LC00000004/#more">Read More</a>
         </p>
       
     </div>
@@ -624,7 +640,7 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
 
 
   
-    <article id="post-JC00000002"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-LC00000001"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -632,7 +648,7 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/11/30/JC00000002/">java边遍历边删除的问题(ConcurrentModificationException异常)</a>
+      <a class="article-title" href="/2018/01/30/LC00000001/">Leetcode - 从排序数组中删除重复项</a>
     </h1>
   
 
@@ -640,24 +656,88 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
     
     <div class="article-meta">
       
-	<a href="/2017/11/30/JC00000002/" class="article-date">
-	  <time datetime="2017-11-30T03:39:32.000Z" itemprop="datePublished">2017-11-30</time>
+	<a href="/2018/01/30/LC00000001/" class="article-date">
+	  <time datetime="2018-01-30T07:02:28.000Z" itemprop="datePublished">2018-01-30</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          为什么java边遍历边删除会报ConcurrentModificationException异常呢？请参考这个Java集合中常见checkForComodification()方法的作用？还有 modCount 和 expectedModCount 作用？
+          问题描述给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
 
-增强循环 使用迭代器123456789101112131415161718192021222324252627282930313233/** * 使用迭代器   * （不推荐使用 users.remove() 继续循环List时会报C...
+示例 1:
+给定数组 nums = [1,1,2], 
+函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
+你不需要考虑数组中超出新长度后面的元素。
+
+
+示例 2:
+给定 nums = [0,0,1,1,1,2,2,3,3,4],
+函数应该返回新的长度 5, ...
         </p>
         <p class="article-more-link">
-          <a href="/2017/11/30/JC00000002/#more">Read More</a>
+          <a href="/2018/01/30/LC00000001/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-LC00000002"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/01/30/LC00000002/">Leetcode - 买卖股票的最佳时机 II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/01/30/LC00000002/" class="article-date">
+	  <time datetime="2018-01-30T07:02:28.000Z" itemprop="datePublished">2018-01-30</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          问题描述给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+
+示例 1:
+输入: [7,1,5,3,6,4]
+输出: 7
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。
+随后，在第 4 天（股票价格 = 3）的时候买入，在第 ...
+        </p>
+        <p class="article-more-link">
+          <a href="/2018/01/30/LC00000002/#more">Read More</a>
         </p>
       
     </div>
@@ -677,6 +757,11 @@ ArrayList实现了Serializable接口，因此它支持序列化，能够通...
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
