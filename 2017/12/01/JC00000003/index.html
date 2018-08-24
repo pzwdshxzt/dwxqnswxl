@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   
-  <title>map遍历 | My mother wouldn&#39;t let me play with fools.</title>
+  <title>map遍历 | When I think of you, I smile.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="基础HashMap" />
+    <meta name="keywords" content="java spring hexo vue Go Python" />
   
   
     <meta name="google-site-verification" content="8NokF_zWvibnQn-qIPhhqlULn-ez6nP-6FdpOkePd3Y" />
@@ -16,11 +16,11 @@
   
   
   <meta name="description" content="Map遍历Map遍历的时候推荐使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出 key 所对应的 value。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效 率更高。如果是 JDK8，使用 Map.f">
-<meta name="keywords" content="基础,HashMap">
+<meta name="keywords" content="HashMap,基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Map遍历">
 <meta property="og:url" content="https://www.dwxnqswxl.cn/2017/12/01/JC00000003/index.html">
-<meta property="og:site_name" content="My mother wouldn&#39;t let me play with fools.">
+<meta property="og:site_name" content="When I think of you, I smile.">
 <meta property="og:description" content="Map遍历Map遍历的时候推荐使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出 key 所对应的 value。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效 率更高。如果是 JDK8，使用 Map.f">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-08-24T02:20:57.036Z">
@@ -28,7 +28,7 @@
 <meta name="twitter:title" content="Map遍历">
 <meta name="twitter:description" content="Map遍历Map遍历的时候推荐使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出 key 所对应的 value。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效 率更高。如果是 JDK8，使用 Map.f">
   
-    <link rel="alternate" href="/atom.xml" title="My mother wouldn&#39;t let me play with fools." type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
   
 
   
@@ -50,10 +50,11 @@
 
   <script src="/js/jquery-3.1.1.min.js"></script>
   <script src="/js/bootstrap.js"></script>
-
+  <script src="/js/jquery-ui-1.10.3.min.js"></script>
+  <script src="/js/jquery.fullpage.min.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css" >
-
+  <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
   
     <link rel="stylesheet" href="/css/dialog.css">
   
@@ -62,6 +63,7 @@
 
   
     <link rel="stylesheet" href="/css/header-post.css" >
+  
   
 
   
@@ -77,6 +79,7 @@
   <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
+  
   
   <div id="container">
     <div id="wrap">
@@ -112,6 +115,8 @@
                   <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
                 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cool">Cool</a> </li>
                 
                   <li> <a class="main-nav-link" href="/about">About</a> </li>
                 
@@ -166,7 +171,8 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-JC00000003" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;">
+<article id="post-JC00000003" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -306,6 +312,7 @@ var a = new Donate({
 </section>
         
       </div>
+      <!--  -->
       
       <footer id="footer">
   
@@ -313,7 +320,7 @@ var a = new Donate({
   <div class="container">
       	<div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 My mother wouldn&#39;t let me play with fools. All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2016 - 2018 When I think of you, I smile. All Rights Reserved.</p>
 	      
 	      
     		<p class="busuanzi_uv">
@@ -342,7 +349,10 @@ var a = new Donate({
       contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
     }
 </script>
+      
     </div>
+
+    
     <!-- <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">Home</a>
@@ -352,6 +362,8 @@ var a = new Donate({
     <a href="/categories" class="mobile-nav-link">Categories</a>
   
     <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cool" class="mobile-nav-link">Cool</a>
   
     <a href="/about" class="mobile-nav-link">About</a>
   
@@ -440,6 +452,7 @@ ga('send', 'pageview');
 
 
 
+    
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -482,7 +495,7 @@ ga('send', 'pageview');
         </div>
          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
           <div class="panel-body">
-            My mother wouldn&#39;t let me play with fools.
+            When I think of you, I smile.
           </div>
           <div class="panel-body">
             Copyright © 2018 Huangjinxing All Rights Reserved.
@@ -504,6 +517,7 @@ ga('send', 'pageview');
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
   
 </body>
 </html>
