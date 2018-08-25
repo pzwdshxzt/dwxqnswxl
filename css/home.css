@@ -243,7 +243,7 @@ h3 {
 .fp-tableCell > div > h1 > a {
   color: #fff;
   padding: 0;
-  font-size: 8em;
+  font-size: 10em;
   margin: 0 0 0.25em;
 }
 #fp-nav ul li a span,
@@ -251,24 +251,81 @@ h3 {
 .fp-slidesNav ul li a span {
   background: #fff;
 }
-.my-arrow svg {
-    padding: 5px;
+.fp-controlArrow.fp-next {
+  right: 30px;
+  border-width: 38.5px 0 38.5px 34px;
+  border-color: transparent transparent transparent #fff;
 }
-.section>buttopn>svg{
-    width: 60px;
-	height: 80px;
-	overflow: hidden;
+.fp-prev {
+  left: 30px;
 }
-.my-arrow {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    margin-top: -45px;
-    width: 70px;
-    height: 90px;
-    z-index: 99;
-    -webkit-appearance: none;
-    background: 0 0;
-    border: 0;
-    outline: 0;
+.fp-slidesNav {
+  width: 100%;
+  text-align: center;
+}
+.fp-slidesNav > ul:after {
+  content: "";
+  visibility: hidden;
+  font-size: 0;
+  height: 0;
+  display: block;
+  clear: both;
+}
+.fp-slidesNav > ul {
+  display: inline-block;
+}
+.fp-slidesNav > ul > li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.category-list{
+	font-size: 8em;
+}
+.category-list>li>a{
+	color: #fff;
+}
+.fp-slidesNav > ul > li > a {
+  display: block;
+}
+@media screen and (max-width: 700px) {
+  .fp-tableCell > div > h1 > a {
+    font-size: 4em;
+  }
+  .category-list{
+	font-size: 4em;
+}
+}
+
+@media screen and (max-width: 1050px) {
+  .fp-tableCell > div > h1 > a {
+    font-size: 5em;
+  }
+  .category-list{
+	font-size: 5em;
+}
+}
+@media screen and (max-width: 1135px) {
+  .fp-tableCell > div > h1 > a {
+    font-size: 6em;
+  }
+  .category-list{
+	font-size: 6em;
+}
+}
+
+@media screen and (max-width: 450px) {
+  .fp-tableCell > div > h1 > a {
+    font-size: 3em;
+  }
+  .category-list{
+	font-size: 3em;
+}
 }

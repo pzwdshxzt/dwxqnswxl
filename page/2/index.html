@@ -92,118 +92,130 @@
             responsiveHeight: 330,
             dragAndMove: true,
             dragAndMoveKey: 'YWx2YXJvdHJpZ28uY29tX0EyMlpISmhaMEZ1WkUxdmRtVT0wWUc=',
-            controlArrows: false
+            controlArrows: true,
+            loopHorizontal: true
         });
         $.fn.fullpage.setAllowScrolling(true);
       });   
     </script>
-    <div id="fullpage"  class="fullpage-wrapper fp-notransition" style="height: 100%; position: relative; touch-action: none; transform: translate3d(0px, 0px, 0px); transition: all 1000ms ease;">
+    <div id="fullpage">
       
         
-          <div class="section fp-table fp-section fp-completely" data-anchor="pageHome" style="background: #ff5f45">
+          <div class="section fp-table" data-anchor="pageHome" style="background: #ff5f45">
         
-            <div  class="fp-tableCell"  style="height: 985px;"> 
-                <div  style="border: 1px solid #fff;" >
-                  
-                    <h1><a href="/"  >Home</a></h1>
-                  
-                  <h2>When I think of you . I smile.</h2>
-                  <h3>欢迎来到我的博客</h3>
-                </div>
-            </div>
+              
+              <div  class="fp-tableCell"  style="height: 985px;"> 
+                  <div  style="border: 1px solid #fff;" >
+                    
+                      <h1><a href="/"  >Home</a></h1>
+                    
+                    <h2>When I think of you . I smile.</h2>
+                    <h3>欢迎来到我的博客</h3>
+                  </div>
+              </div>
+            
           </div>
       
         
-          <div class="section fp-table fp-section fp-completely" data-anchor="pageArchives" style="background: #0798ec">
+          <div class="section fp-table" data-anchor="pageArchives" style="background: #0798ec">
         
-            <div  class="fp-tableCell"  style="height: 985px;"> 
-                <div  style="border: 1px solid #fff;" >
-                  
-                    <h1><a href="/archives"  >Archives</a></h1>
-                  
-                  <h2>文档</h2>
-                  <h3>查看文章的文档</h3>
-                </div>
-            </div>
+              
+              <div  class="fp-tableCell"  style="height: 985px;"> 
+                  <div  style="border: 1px solid #fff;" >
+                    
+                      <h1><a href="/archives"  >Archives</a></h1>
+                    
+                    <h2>文档</h2>
+                    <h3>查看文章的文档</h3>
+                  </div>
+              </div>
+            
           </div>
       
         
-          <div class="section fp-table fp-section fp-completely" data-anchor="pageCategories" style="background: #fc6c7c">
+          <div class="section fp-table" data-anchor="pageCategories" style="background: #fc6c7c">
         
-            <div  class="fp-tableCell"  style="height: 985px;"> 
-                <div  style="border: 1px solid #fff;" >
-                  
-                    <h1><a href="/categories"  >Categories</a></h1>
-                  
-                  <h2>分类</h2>
-                  <h3>查看博客中的文章分类</h3>
+              
+                <div class="slide" style="height: 985px;" >
+                    <div  style="border: 1px solid #fff;" >
+                      <h1><a href="/categories"  >Categories</a></h1>
+                      <h2>分类</h2>
+                      <h3>左右滑动查看博客中的文章分类</h3>
+                     </div>
                 </div>
-            </div>
+                
+                  <div class="slide" data-anchor="pageCategories" ><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-count">4</span></li></ul></div>
+                
+              
+            
           </div>
       
         
-          <div class="section fp-table fp-section fp-completely" data-anchor="pageTags" style="background: #fec401">
+          <div class="section fp-table" data-anchor="pageTags" style="background: #fec401">
         
-            <div  class="fp-tableCell"  style="height: 985px;"> 
-                <div  style="border: 1px solid #fff;" >
-                  
-                    <h1><a href="/tags"  >Tags</a></h1>
-                  
-                  <h2>标签</h2>
-                  <h3>查看文章的标签啊</h3>
-                </div>
-            </div>
+              
+              <div  class="fp-tableCell"  style="height: 985px;"> 
+                  <div  style="border: 1px solid #fff;" >
+                    
+                      <h1><a href="/tags"  >Tags</a></h1>
+                    
+                    <h2>标签</h2>
+                    <h3>查看文章的标签啊</h3>
+                  </div>
+              </div>
+            
           </div>
       
         
-          <div class="section fp-table fp-section fp-completely" data-anchor="pageCool" style="background: #fecc7c">
+          <div class="section fp-table" data-anchor="pageCool" style="background: #fecc7c">
         
-            <div  class="fp-tableCell"  style="height: 985px;"> 
-                <div  style="border: 1px solid #fff;" >
-                  
-                    <h1><a href="/cool"  >Cool</a></h1>
-                  
-                  <h2>酷站</h2>
-                  <h3>很多有趣的网站</h3>
-                </div>
-            </div>
+              
+              <div  class="fp-tableCell"  style="height: 985px;"> 
+                  <div  style="border: 1px solid #fff;" >
+                    
+                      <h1><a href="/cool"  >Cool</a></h1>
+                    
+                    <h2>酷站</h2>
+                    <h3>很多有趣的网站</h3>
+                  </div>
+              </div>
+            
           </div>
       
         
-          <div class="section fp-table fp-section fp-completely" data-anchor="pageAbout" style="background: #acc7df">
+          <div class="section fp-table" data-anchor="pageAbout" style="background: #ff5f45">
         
-            <div  class="fp-tableCell"  style="height: 985px;"> 
-                <div  style="border: 1px solid #fff;" >
-                  
-                    <h1><a href="/about"  >About</a></h1>
-                  
-                  <h2>关于我</h2>
-                  <h3>My mother wouldn&#39;t let me play with fools.</h3>
-                </div>
-            </div>
+              
+              <div  class="fp-tableCell"  style="height: 985px;"> 
+                  <div  style="border: 1px solid #fff;" >
+                    
+                      <h1><a href="/about"  >About</a></h1>
+                    
+                    <h2>关于我</h2>
+                    <h3>My mother wouldn&#39;t let me play with fools.</h3>
+                  </div>
+              </div>
+            
           </div>
        
     </div>
-
-      <div class="intro-navigate">
-          <p class="navigater-list">
-            
-              <a  class="main-nav-link" href="/">Home</a>
-            
-              <a  class="main-nav-link" href="/archives">Archives</a>
-            
-              <a  class="main-nav-link" href="/categories">Categories</a>
-            
-              <a  class="main-nav-link" href="/tags">Tags</a>
-            
-              <a  class="main-nav-link" href="/cool">Cool</a>
-            
-              <a  class="main-nav-link" href="/about">About</a>
-            
-          </p>
-      </div>
-
-
+    <div class="intro-navigate">
+        <p class="navigater-list">
+          
+            <a  class="main-nav-link" href="/">Home</a>
+          
+            <a  class="main-nav-link" href="/archives">Archives</a>
+          
+            <a  class="main-nav-link" href="/categories">Categories</a>
+          
+            <a  class="main-nav-link" href="/tags">Tags</a>
+          
+            <a  class="main-nav-link" href="/cool">Cool</a>
+          
+            <a  class="main-nav-link" href="/about">About</a>
+          
+        </p>
+    </div>
 </header>
   
   
