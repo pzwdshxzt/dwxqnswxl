@@ -295,6 +295,21 @@ h3 {
 .fp-slidesNav > ul > li > a {
   display: block;
 }
+
+.archives-tags-wrap {
+  margin: 0 0;
+
+}
+
+.fp-tableCell>blockquote {
+  padding: 20px 30px;
+  margin: 0 0 auto;
+}
+
+.fp-tableCell>blockquote>a {
+  color: #fff;
+}
+
 @media screen and (max-width: 700px) {
   .fp-tableCell > div > h1 > a {
     font-size: 4em;
