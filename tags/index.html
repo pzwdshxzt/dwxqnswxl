@@ -74,6 +74,50 @@
     <link rel="stylesheet" href="/css/vdonate.css" >
   
 
+  <script type="text/javascript">
+    var a_idx = 0;
+   
+    jQuery(document).ready(function ($) {
+      $("body").click(function (e) {
+        var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+        var $i = $("<span/>").text(a[a_idx]); a_idx = (a_idx + 1) % a.length; var x = e.pageX, y = e.pageY;
+        var selectColor = "#fff";
+        if(!isHomePage()){
+          var clickColor = ['#ff5f45','#0798ec','#fc6c7c','#fec401','#fecc7c',"#ff5f45"];
+          var index = Math.floor((Math.random()*clickColor.length)); 
+          selectColor = clickColor[index];
+        }
+       
+        $i.css({
+          "z-index": 999,
+          "top": y - 20,
+          "left": x,
+          "position": "absolute",
+          "font-weight": "bold",
+          "color":selectColor ,
+          "font-size":"20px"
+        });
+        $("body").append($i);
+        $i.animate({
+          "top": y - 180,
+          "opacity": 0
+        }, 2000, function () { $i.remove(); });
+      });
+
+       function isHomePage(){
+
+        var localUrl = window.location.href;	 
+
+        var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn(/?|/index[(.|_)].*|/?[?].*)$", "i");
+
+        return regex.test(localUrl);
+
+        }
+    });
+
+   
+  </script>
+
 </head>
 
 
@@ -206,19 +250,19 @@
                 
                     <a href="#List" title="List" rel="1">List</a>
                 
+                    <a href="#HashMap" title="HashMap" rel="2">HashMap</a>
+                
                     <a href="#插入排序" title="插入排序" rel="1">插入排序</a>
                 
                     <a href="#冒泡排序" title="冒泡排序" rel="1">冒泡排序</a>
                 
                     <a href="#快速排序" title="快速排序" rel="1">快速排序</a>
                 
-                    <a href="#HashMap" title="HashMap" rel="2">HashMap</a>
-                
-                    <a href="#lambda" title="lambda" rel="1">lambda</a>
-                
                     <a href="#Array" title="Array" rel="4">Array</a>
                 
                     <a href="#算法" title="算法" rel="4">算法</a>
+                
+                    <a href="#lambda" title="lambda" rel="1">lambda</a>
                 
                     <a href="#源码阅读" title="源码阅读" rel="5">源码阅读</a>
                 
