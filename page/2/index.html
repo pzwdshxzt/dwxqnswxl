@@ -103,7 +103,7 @@
 
         var localUrl = window.location.href;	 
 
-        var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn(/?|/index[(.|_)].*|/?[?].*)$", "i");
+        var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(.*#page.*\d$))$", "i");
 
         return regex.test(localUrl);
 

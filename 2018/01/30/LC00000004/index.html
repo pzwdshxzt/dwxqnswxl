@@ -106,7 +106,7 @@
 
         var localUrl = window.location.href;	 
 
-        var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn(/?|/index[(.|_)].*|/?[?].*)$", "i");
+        var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(.*#page.*\d$))$", "i");
 
         return regex.test(localUrl);
 
@@ -340,9 +340,9 @@ var a = new Donate({
     </a>
   
   
-    <a href="/2018/01/30/LC00000001/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/30/LC00000003/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Leetcode - 从排序数组中删除重复项</div>
+      <div class="article-nav-title">Leetcode - 旋转数组</div>
     </a>
   
 </nav>
