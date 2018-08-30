@@ -103,15 +103,11 @@
           }, 2000, function () { $i.remove(); });
         });
 
-       function isHomePage(){
-
-        var localUrl = window.location.href;	 
-
-        var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(.*#page.*\d$))$", "i");
-
-        return regex.test(localUrl);
-
-        }
+        function isHomePage() {
+          var localUrl = window.location.href;
+          var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(.*#page.*\d$))$", "i");
+          return regex.test(localUrl);
+      }
     });
 
    

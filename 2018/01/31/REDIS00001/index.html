@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>leetcode - 两数之和 | When I think of you, I smile.</title>
+  <title>windows docker redis cluster 集群部署(linux一样) | When I think of you, I smile.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="java spring hexo vue Go Python" />
@@ -15,18 +15,18 @@
     <meta name="baidu-site-verification" content="dIzD0rDnsN" />
   
   
-  <meta name="description" content="问题描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1]   解答123456789101112131415161718192021@Testpubli">
-<meta name="keywords" content="Array,算法">
+  <meta name="description" content="废话不多说直接进入主题  docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了 pull redis (我采用3.0.7的redis版本，用其他也行)1# docker pull redis:3.0.7   构建 redis-cluster创建Dockerfile 文件1234FROM redis:3.0.7EXPOSE 6379ADD redis.conf">
+<meta name="keywords" content="Docker,Redis,集群,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode - 两数之和">
-<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/01/30/LC00000004/index.html">
+<meta property="og:title" content="Windows Docker Redis cluster 集群部署(linux一样)">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/01/31/REDIS00001/index.html">
 <meta property="og:site_name" content="When I think of you, I smile.">
-<meta property="og:description" content="问题描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1]   解答123456789101112131415161718192021@Testpubli">
+<meta property="og:description" content="废话不多说直接进入主题  docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了 pull redis (我采用3.0.7的redis版本，用其他也行)1# docker pull redis:3.0.7   构建 redis-cluster创建Dockerfile 文件1234FROM redis:3.0.7EXPOSE 6379ADD redis.conf">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-24T03:10:59.379Z">
+<meta property="og:updated_time" content="2018-08-30T03:09:31.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode - 两数之和">
-<meta name="twitter:description" content="问题描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1]   解答123456789101112131415161718192021@Testpubli">
+<meta name="twitter:title" content="Windows Docker Redis cluster 集群部署(linux一样)">
+<meta name="twitter:description" content="废话不多说直接进入主题  docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了 pull redis (我采用3.0.7的redis版本，用其他也行)1# docker pull redis:3.0.7   构建 redis-cluster创建Dockerfile 文件1234FROM redis:3.0.7EXPOSE 6379ADD redis.conf">
   
     <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
   
@@ -212,7 +212,7 @@
       <div id="content" class="outer">
         
           <section id="main" style="float:none;">
-<article id="post-LC00000004" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+<article id="post-REDIS00001" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -220,7 +220,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Leetcode - 两数之和
+      Windows Docker Redis cluster 集群部署(linux一样)
     </h1>
   
 
@@ -228,12 +228,12 @@
     
     <div class="article-meta">
       
-	<a href="/2018/01/30/LC00000004/" class="article-date">
-	  <time datetime="2018-01-30T07:02:28.000Z" itemprop="datePublished">2018-01-30</time>
+	<a href="/2018/01/31/REDIS00001/" class="article-date">
+	  <time datetime="2018-01-31T08:49:55.000Z" itemprop="datePublished">2018-01-31</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+    <a class="article-category-link" href="/categories/Redis/">Redis</a>
 
       
 	<a class="article-views">
@@ -245,15 +245,37 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。<br>你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。</p>
-<hr>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h3><ul>
-<li>给定 nums = [2, 7, 11, 15], target = 9</li>
-<li>因为 nums[0] + nums[1] = 2 + 7 = 9</li>
-<li>所以返回 [0, 1]</li>
+        <blockquote>
+<p>废话不多说直接进入主题</p>
+</blockquote>
+<p>docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了</p>
+<h1 id="pull-redis"><a href="#pull-redis" class="headerlink" title="pull redis"></a>pull redis</h1><ul>
+<li>(我采用3.0.7的redis版本，用其他也行)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># docker pull redis:3.0.7</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<hr>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testTwoSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arrays = &#123;<span class="number">3</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    arrays = twoSum(arrays, <span class="number">6</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arrays.length; i++) &#123;</span><br><span class="line">        System.out.println(arrays[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> component = target - nums[i];</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(component))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;map.get(component),i&#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(nums[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"error"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="构建-redis-cluster"><a href="#构建-redis-cluster" class="headerlink" title="构建 redis-cluster"></a>构建 redis-cluster</h1><h2 id="创建Dockerfile-文件"><a href="#创建Dockerfile-文件" class="headerlink" title="创建Dockerfile 文件"></a>创建Dockerfile 文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM redis:3.0.7</span><br><span class="line">EXPOSE 6379</span><br><span class="line">ADD redis.conf /redis.conf</span><br><span class="line">ENTRYPOINT [ &quot;redis-server&quot;, &quot;/redis.conf&quot; ]</span><br></pre></td></tr></table></figure>
+<p>dockerfile文件阅读也比较简单~</p>
+<h2 id="进入dockerfile目录"><a href="#进入dockerfile目录" class="headerlink" title="进入dockerfile目录"></a>进入dockerfile目录</h2><p>接下来<br>在同目录下放redis.conf(3.0.7版本)的配置文件<br>修改dockerfile目录下的redis.conf 文件<br>构建 dokcer images<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># docker build -t  “redis-cluster” .</span><br></pre></td></tr></table></figure></p>
+<p>注意后面有一个点当前目录<br>没写tag 默认latest</p>
+<h2 id="为集群选定ip"><a href="#为集群选定ip" class="headerlink" title="为集群选定ip"></a>为集群选定ip</h2><p>为了使容器ip固定 重启后也是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># docker network create --subnet=172.11.0.0/16  redis //创建网络</span><br></pre></td></tr></table></figure></p>
+<p>创建 redis-cluster 结点容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># docker run -d --net redis --ip 172.11.0.91 -p 8001:6379 --name redis1 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.92 -p 8002:6379 --name redis2 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.93 -p 8003:6379 --name redis3 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.94 -p 8004:6379 --name redis4 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.95 -p 8005:6379 --name redis5 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.96 -p 8006:6379 --name redis6 redis-cluster</span><br></pre></td></tr></table></figure></p>
+<p>有的人说开发一个端口给客户端使用就好了 就把 -p 和 后面的端口去掉就好了</p>
+<h1 id="集群管理ruby"><a href="#集群管理ruby" class="headerlink" title="集群管理ruby"></a>集群管理ruby</h1><p>接下来使用官方的 redis-trib.rb  （linux直接安装ruby 启动就好了）</p>
+<h2 id="下载ruby"><a href="#下载ruby" class="headerlink" title="下载ruby"></a>下载ruby</h2><p>所以要下载ruby<br>这里直接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker pull ruby</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="dockerfile构建可用ruby"><a href="#dockerfile构建可用ruby" class="headerlink" title="dockerfile构建可用ruby"></a>dockerfile构建可用ruby</h2><p>然后通过构建Dockerfile制作redis集群管理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM ruby</span><br><span class="line">ADD redis-3.0.7.gem /redis-3.0.7.gem</span><br><span class="line">ADD redis-trib.rb /redis-trib.rb</span><br></pre></td></tr></table></figure></p>
+<p>这两个文件放在目录下<br>Redis-3.0.7.gem 基于国情要导入，可以直接去网上下载<br>如果不下载就不用导入<br>直接 gem install redis –version 3.0.7<br>就可以直接安装<br>去掉dockerfile 上面那一行<br>然后进入该目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker build “ruby-redis” .</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动ruby"><a href="#启动ruby" class="headerlink" title="启动ruby"></a>启动ruby</h2><p>启动 ruby-redis<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker run --net=redis --ip 172.11.0.100--name ruby11 -i -d ruby-redis</span></span><br></pre></td></tr></table></figure></p>
+<p>要在同一个网络 redis 才能互连</p>
+<h2 id="进入ruby起得容器"><a href="#进入ruby起得容器" class="headerlink" title="进入ruby起得容器"></a>进入ruby起得容器</h2><p>进入改ruby 容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker exec -it ruby11 /bin/bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="在容器中安装"><a href="#在容器中安装" class="headerlink" title="在容器中安装"></a>在容器中安装</h2><p>安装redis-gem<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gem install -l redis-3.0.7.gem 或者</span></span><br><span class="line"><span class="comment"># gem install redis –version 3.0.7</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./redis-trib.rb  create --replicas 1  172.11.0.91:6379 172.11.0.92:6379 172.11.0.93:6379 172.11.0.94:6379 172.11.0.95:6379 172.11.0.96:6379</span></span><br></pre></td></tr></table></figure>
+<p>1表示 master 后面有一个 slave cluster<br>然后输入yes 就可以了</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>随便登录一个节点测试连接集群测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cluster node</span></span><br><span class="line"><span class="comment"># cluster info</span></span><br></pre></td></tr></table></figure></p>
+<p>设置k-v 测试<br>切换结点测试<br>宿主机测试：<br>Docker ip 10.0.75.1<br>端口就是容器对外开放的端口<br>另一个是容器间端口使用</p>
+<blockquote>
+<p>看不懂可以到我简书上，有图文！    —— <a href="https://www.jianshu.com/p/4e02b0f567a0" target="_blank"> [ 简书 ]</a></p>
+</blockquote>
 
       
     </div>
@@ -280,7 +302,7 @@ var a = new Donate({
           </li>
           <li class="post-copyright-link">
           <strong>Post link:  </strong>
-          <a href="/2018/01/30/LC00000004/" target="_blank" title="Leetcode - 两数之和">https://www.dwxnqswxl.cn/2018/01/30/LC00000004/</a>
+          <a href="/2018/01/31/REDIS00001/" target="_blank" title="Windows Docker Redis cluster 集群部署(linux一样)">https://www.dwxnqswxl.cn/2018/01/31/REDIS00001/</a>
           </li>
           <li class="post-copyright-license">
             <strong>Copyright Notice:   </strong>
@@ -326,19 +348,19 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="/2018/01/30/JC00000004/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/03/YM00000005/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          java进阶 - 经典排序
+          ArrayList（JDK1.8） 源码阅读记录
         
       </div>
     </a>
   
   
-    <a href="/2018/01/30/LC00000003/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/30/LC00000002/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Leetcode - 旋转数组</div>
+      <div class="article-nav-title">Leetcode - 买卖股票的最佳时机 II</div>
     </a>
   
 </nav>
@@ -352,7 +374,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.1.</span> <span class="nav-text">示例:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解答"><span class="nav-number">2.</span> <span class="nav-text">解答</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pull-redis"><span class="nav-number">1.</span> <span class="nav-text">pull redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建-redis-cluster"><span class="nav-number">2.</span> <span class="nav-text">构建 redis-cluster</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Dockerfile-文件"><span class="nav-number">2.1.</span> <span class="nav-text">创建Dockerfile 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入dockerfile目录"><span class="nav-number">2.2.</span> <span class="nav-text">进入dockerfile目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为集群选定ip"><span class="nav-number">2.3.</span> <span class="nav-text">为集群选定ip</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群管理ruby"><span class="nav-number">3.</span> <span class="nav-text">集群管理ruby</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载ruby"><span class="nav-number">3.1.</span> <span class="nav-text">下载ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dockerfile构建可用ruby"><span class="nav-number">3.2.</span> <span class="nav-text">dockerfile构建可用ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动ruby"><span class="nav-number">3.3.</span> <span class="nav-text">启动ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入ruby起得容器"><span class="nav-number">3.4.</span> <span class="nav-text">进入ruby起得容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在容器中安装"><span class="nav-number">3.5.</span> <span class="nav-text">在容器中安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动集群"><span class="nav-number">3.6.</span> <span class="nav-text">启动集群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li></ol>
     
     </div>
   </aside>
