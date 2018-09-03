@@ -106,7 +106,8 @@
 
         function isHomePage() {
           var localUrl = window.location.href;
-          var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(.*#page.*\d$))$", "i");
+          https://www.dwxqnswxl.cn/(|#page(1|2|3|4|5|6|7|8|9))
+          var regex = new RegExp("^https?://(test-)?www\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(/#page[0-9]$))$", "i");
           return regex.test(localUrl);
       }
     });
