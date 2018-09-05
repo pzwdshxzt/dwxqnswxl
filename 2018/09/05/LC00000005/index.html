@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>category: redis | When I think of you, I smile.</title>
+  <title>leetcode - 只出现一次的数字 | When I think of you, I smile.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="java spring hexo vue Go Python" />
@@ -15,17 +15,18 @@
     <meta name="baidu-site-verification" content="dIzD0rDnsN" />
   
   
-  <meta name="description" content="Love and peace cosmopolitanism">
-<meta name="keywords" content="java spring hexo vue Go Python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="When I think of you, I smile.">
-<meta property="og:url" content="https://www.dwxnqswxl.cn/categories/Redis/index.html">
+  <meta name="description" content="问题描述给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。  示例: 输入: [2,2,1] 输出: 1  输入: [4,1,2,1,2] 输出: 4   解答12345678910111213141516171819202122232425@Testpublic void testSingleNumber() &amp;#123;    int[] a">
+<meta name="keywords" content="Array,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode - 只出现一次的数字">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/09/05/LC00000005/index.html">
 <meta property="og:site_name" content="When I think of you, I smile.">
-<meta property="og:description" content="Love and peace cosmopolitanism">
+<meta property="og:description" content="问题描述给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。  示例: 输入: [2,2,1] 输出: 1  输入: [4,1,2,1,2] 输出: 4   解答12345678910111213141516171819202122232425@Testpublic void testSingleNumber() &amp;#123;    int[] a">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-05T03:33:39.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="When I think of you, I smile.">
-<meta name="twitter:description" content="Love and peace cosmopolitanism">
+<meta name="twitter:title" content="Leetcode - 只出现一次的数字">
+<meta name="twitter:description" content="问题描述给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。  示例: 输入: [2,2,1] 输出: 1  输入: [4,1,2,1,2] 输出: 4   解答12345678910111213141516171819202122232425@Testpublic void testSingleNumber() &amp;#123;    int[] a">
   
     <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
   
@@ -61,8 +62,6 @@
   
   
 
-  
-    <link rel="stylesheet" href="/css/archive.css" >
   
   
   
@@ -113,7 +112,7 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -137,7 +136,7 @@
             
               <a class="brand" style="
                  border-width: 0px;  margin-top: 10px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
               </a>
             
@@ -209,43 +208,143 @@
       <div id="content" class="outer">
         
           <section id="main" style="float:none;">
-  
-  
-  
+<article id="post-LC00000005" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2018/01/31/REDIS00001/" class="archive-article-date">
-	  <time datetime="2018-01-31T08:49:55.000Z" itemprop="datePublished">2018-01-31</time>
-	</a>
-
-      
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/01/31/REDIS00001/">Windows Docker Redis cluster 集群部署(linux一样)</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Leetcode - 只出现一次的数字
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/05/LC00000005/" class="article-date">
+	  <time datetime="2018-09-05T07:02:28.000Z" itemprop="datePublished">2018-09-05</time>
+	</a>
 
-<!--  -->
+      
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一个非空整数数组，除了某个元素只出现一次以外，<br>其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<hr>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h3><ul>
+<li>输入: [2,2,1]</li>
+<li>输出: 1</li>
+<li></li>
+<li>输入: [4,1,2,1,2]</li>
+<li>输出: 4</li>
+</ul>
+<hr>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSingleNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    System.out.println(singleNumber(a));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 只出现一次的数字</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">        a ^= num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/css/images/wechat.png',
+  alipayImage: '/css/images/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/09/05/LC00000005/" target="_blank" title="Leetcode - 只出现一次的数字">https://www.dwxnqswxl.cn/2018/09/05/LC00000005/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/17/YM00000001/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HashMap（JDK1.8）源码阅读记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.1.</span> <span class="nav-text">示例:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解答"><span class="nav-number">2.</span> <span class="nav-text">解答</span></a></li></ol>
+    
+    </div>
+  </aside>
 
 </section>
         
@@ -349,6 +448,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 <!-- Google Analytics -->
@@ -451,6 +552,8 @@ ga('send', 'pageview');
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
     
    
   
