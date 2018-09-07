@@ -16,7 +16,7 @@
   
   
   <meta name="description" content="Map遍历Map遍历的时候推荐使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出 key 所对应的 value。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效 率更高。如果是 JDK8，使用 Map.f">
-<meta name="keywords" content="基础,HashMap">
+<meta name="keywords" content="HashMap,基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Map遍历">
 <meta property="og:url" content="https://www.dwxnqswxl.cn/2017/12/01/JC00000003/index.html">
@@ -323,9 +323,9 @@ var a = new Donate({
     </a>
   
   
-    <a href="/2017/11/30/JC00000005/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/30/JC00000002/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java 8 - lambda</div>
+      <div class="article-nav-title">java边遍历边删除的问题(ConcurrentModificationException异常)</div>
     </a>
   
 </nav>
