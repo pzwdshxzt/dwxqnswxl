@@ -285,24 +285,12 @@
 <script>
   window.onload = function () {
     var ca = document.getElementById("c1");
-    ca.width = screen.availWidth * 0.7;
-    ca.height = screen.availWidth * 0.7;
-
-    if(screen.availWidth > 750){
-      ca.width = screen.availWidth * 0.5;
-      ca.height = screen.availWidth * 0.5;
-    }
-
-    if(screen.availWidth > 1050){
+ 
+    if(screen.availWidth < 1000){
       ca.width = screen.availWidth * 0.6;
       ca.height = screen.availWidth * 0.6;
     }
-    if(screen.availWidth > 1135){
-      ca.width = screen.availWidth * 0.4;
-      ca.height = screen.availWidth * 0.4;
-    }
     
-   
     var oc = ca.getContext("2d");
     function drawClock() {
       var x = ca.width * 0.5;
