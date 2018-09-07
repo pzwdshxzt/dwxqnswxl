@@ -46,7 +46,6 @@
   <script src="/js/bootstrap.js"></script>
   <script src="/js/jquery-ui-1.10.3.min.js"></script>
   <script src="/js/jquery.fullpage.min.js"></script>
-  <script src="/js/jquery-starfield.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css" >
   <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
@@ -286,11 +285,29 @@
 <script>
   window.onload = function () {
     var ca = document.getElementById("c1");
+    ca.width = screen.availWidth * 0.7;
+    ca.height = screen.availWidth * 0.7;
+
+    if(screen.availWidth > 750){
+      ca.width = screen.availWidth * 0.5;
+      ca.height = screen.availWidth * 0.5;
+    }
+
+    if(screen.availWidth > 1050){
+      ca.width = screen.availWidth * 0.6;
+      ca.height = screen.availWidth * 0.6;
+    }
+    if(screen.availWidth > 1135){
+      ca.width = screen.availWidth * 0.4;
+      ca.height = screen.availWidth * 0.4;
+    }
+    
+   
     var oc = ca.getContext("2d");
     function drawClock() {
-      var x = 300;
-      var y = 300;
-      var r = 200;
+      var x = ca.width * 0.5;
+      var y = x;
+      var r = ca.width * 0.45;
 
       var date = new Date();
       var oH = date.getHours();
