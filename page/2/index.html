@@ -46,6 +46,7 @@
   <script src="/js/bootstrap.js"></script>
   <script src="/js/jquery-ui-1.10.3.min.js"></script>
   <script src="/js/jquery.fullpage.min.js"></script>
+  <script src="/js/head.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css" >
   <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
@@ -118,7 +119,7 @@
         
           <div class="section fp-table" data-anchor="pageHome" style="background: #ff5f45">
         
-            
+             
               <div class="fp-tableCell" >
                 <div>
                   
@@ -134,16 +135,17 @@
                 </div>
               </div>
               
+
           </div>
           
         
           <div class="section fp-table" data-anchor="pageArchives" style="background: #0798ec">
         
-            
+             
               <div class="fp-tableCell" >
                 <div>
                   
-                    <h1><a href="/archives">Archives</a></h1>
+                    <h1><a  href="/archives">Archives</a></h1>
                     
                     <h2>
                       文档
@@ -154,6 +156,7 @@
                 </div>
               </div>
               
+
           </div>
           
         
@@ -171,12 +174,13 @@
                     </h3>
                   </div>
               </div>
+              
+                <div class="slide" data-anchor="pageCategories">
+                  <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/部署/">部署</a><span class="category-list-count">1</span></li></ul>
+                </div>
+              
             
-              <div class="slide" data-anchor="pageCategories">
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/部署/">部署</a><span class="category-list-count">1</span></li></ul>
-              </div>
-            
-            
+
           </div>
           
         
@@ -204,16 +208,17 @@
                 </div>
                 
             
+
           </div>
           
         
           <div class="section fp-table" data-anchor="pageCool" style="background: #fecc7c">
         
-            
+             
               <div class="fp-tableCell" >
                 <div>
                   
-                    <h1><a href="/cool">Cool</a></h1>
+                    <h1><a  href="/cool">Cool</a></h1>
                     
                     <h2>
                       酷站
@@ -224,26 +229,30 @@
                 </div>
               </div>
               
+
           </div>
           
         
-          <div class="section fp-table" data-anchor="pageAbout" style="background: #ff5f45">
+          <div class="section fp-table" data-anchor="pageAbout" style="background: #0798ec">
         
             
-              <div class="fp-tableCell" >
-                <div>
-                  
-                    <h1><a href="/about">About</a></h1>
-                    
-                    <h2>
-                      关于我
-                    </h2>
-                    <h3>
-                      My mother wouldn&#39;t let me play with fools.
-                    </h3>
+              <div class="pozycja">
+                <div class="ludek">
+                  <div class="cialo">
+                    <div class="ucho lewe"></div>
+                    <div class="ucho prawe"></div>
+                    <div class="skora">
+                      <div class="oko lewe"><span class="zrenica"></span></div>
+                      <div class="oko prawe"><span class="zrenica"></span></div>
+                      <div class="powieka_gorna"></div>
+                      <div class="powieka_dolna"></div>
+                      <div class="usta"><h1><a href="/about">About Me</a></h1> </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
+            
+
           </div>
           
           </div>
@@ -264,102 +273,7 @@
                 
             </p>
           </div>
-<script> 
-  $(document).ready(function () {
-    $('#fullpage').fullpage({
-      anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
-      navigationTooltips: ['Home', 'Archives', 'Categories', 'Tags', 'Cool', 'About'],
-      css3: true,
-      scrollingSpeed: 1000,
-      navigation: true,
-      slidesNavigation: true,
-      responsiveHeight: 330,
-      dragAndMove: true,
-      dragAndMoveKey: 'YWx2YXJvdHJpZ28uY29tX0EyMlpISmhaMEZ1WkUxdmRtVT0wWUc=',
-      controlArrows: true,
-      loopHorizontal: true
-    });
-    $.fn.fullpage.setAllowScrolling(true);
-  });
-</script>
-<script>
-  window.onload = function () {
-    var ca = document.getElementById("c1");
- 
-    if(screen.availWidth < 1000){
-      ca.width = screen.availWidth * 0.6;
-      ca.height = screen.availWidth * 0.6;
-    }
-    
-    var oc = ca.getContext("2d");
-    function drawClock() {
-      var x = ca.width * 0.5;
-      var y = x;
-      var r = ca.width * 0.45;
 
-      var date = new Date();
-      var oH = date.getHours();
-      var oM = date.getMinutes();
-      var oS = date.getSeconds();
-      var oHouers = (-90 + oH * 30 + 30 * oM / 60) * Math.PI / 180;
-      var oMinutes = (-90 + oM * 6 + 6 * oS / 60) * Math.PI / 180;
-      var oSeconds = (-90 + oS * 6) * Math.PI / 180;
-
-      oc.strokeStyle = "#fff";
-      oc.clearRect(0, 0, ca.window, ca.height)
-      for (var i = 0; i < 60; i++) {
-        oc.beginPath();
-        oc.moveTo(x, y);
-        oc.arc(x, y, r, 6 * i * Math.PI / 180, 6 * (i + 1) * Math.PI / 180);
-        oc.closePath();
-        oc.stroke();
-      }
-      oc.fillStyle = "#fff"
-      oc.beginPath();
-      oc.arc(x, y, r * 19 / 20, 0, 360 * Math.PI / 180);
-      oc.fill()
-      oc.closePath();
-      for (var i = 0; i < 60; i++) {
-        oc.beginPath();
-        oc.moveTo(x, y);
-        oc.arc(x, y, r, 30 * i * Math.PI / 180, 30 * (i + 1) * Math.PI / 180);
-        oc.closePath();
-        oc.stroke();
-      }
-      oc.fillStyle = "#fff"
-      oc.beginPath();
-      oc.arc(x, y, r * 18 / 20, 0, 360 * Math.PI / 180);
-      oc.fill()
-      oc.closePath();
-      oc.lineWidth = 5
-      oc.beginPath();
-      oc.moveTo(x, y)
-      oc.strokeStyle = "#000";
-      oc.arc(x, y, r * 8 / 20, oHouers, oHouers);
-      oc.closePath();
-      oc.stroke();
-      oc.lineWidth = 3
-      oc.beginPath();
-      oc.moveTo(x, y)
-      oc.strokeStyle = "#000";
-      oc.arc(x, y, r * 12 / 20, oMinutes, oMinutes);
-      oc.closePath();
-      oc.stroke();
-      oc.lineWidth = 1
-
-      oc.beginPath();
-      oc.moveTo(x, y);
-      oc.strokeStyle = "red";
-      oc.arc(x, y, r * 16 / 20, oSeconds, oSeconds);
-      oc.closePath();
-      oc.stroke();
-    }
-    setInterval(function () {
-      drawClock()
-    }, 1000)
-    drawClock()
-  }
-</script>
 </header>
   
   
