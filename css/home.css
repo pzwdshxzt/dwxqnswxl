@@ -248,11 +248,6 @@ h3 {
 .fp-slidesNav ul li a span {
   background: #fff;
 }
-.fp-controlArrow.fp-next {
-  right: 30px;
-  border-width: 38.5px 0 38.5px 34px;
-  border-color: transparent transparent transparent #fff;
-}
 .fp-prev {
   left: 30px;
 }
