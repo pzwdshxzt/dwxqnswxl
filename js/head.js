@@ -143,6 +143,8 @@ $(function() {
     ustaRuchY = (10 * lMouseY) / 100;
   });
   animacja();
+  $('.pozycja').fadeOut(2000);
+  $('#c1').fadeOut(2000);
 });
 
 $(document).ready(function() {
@@ -182,11 +184,7 @@ $(document).ready(function() {
 			if(index == 6){
 				$('#c1').fadeIn(2000);
 			}
-		},
-    afterRender:function(){
-				$('.pozycja').fadeIn(2000);
-    }
-
+		}
   });
   $.fn.fullpage.setAllowScrolling(true);
 });
