@@ -164,7 +164,29 @@ $(document).ready(function() {
     dragAndMove: true,
     dragAndMoveKey: "YWx2YXJvdHJpZ28uY29tX0EyMlpISmhaMEZ1WkUxdmRtVT0wWUc=",
     controlArrows: true,
-    loopHorizontal: true
+    loopHorizontal: true,
+    onLeave: function(index, direction){
+			
+			if(index == '1'){
+				$('.pozycja').fadeOut(2000);
+			}
+			if(index == '6'){
+				$('#c1').fadeOut(2000);
+			}
+    },
+    afterLoad: function(anchorLink, index){
+			
+			if(index == 1){
+				$('.pozycja').fadeIn(2000);
+			}
+			if(index == 6){
+				$('#c1').fadeIn(2000);
+			}
+		},
+    afterRender:function(){
+				$('.pozycja').fadeIn(2000);
+    }
+
   });
   $.fn.fullpage.setAllowScrolling(true);
 });
