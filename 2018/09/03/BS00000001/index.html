@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>zeit.co 免费服务器平台 | When I think of you, I smile.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="java spring hexo vue Go Python" />
+  
+  
+    <meta name="google-site-verification" content="8NokF_zWvibnQn-qIPhhqlULn-ez6nP-6FdpOkePd3Y" />
+  
+  
+    <meta name="baidu-site-verification" content="dIzD0rDnsN" />
+  
+  
+  <meta name="description" content="ZEIT.CO 您可以轻松，快速，可靠地将JavaScript（Node.js）或Docker支持的网站，应用程序和服务带到云端。实际上，任何包含package.json或Dockerfile可以使用一个命令传输到云的目录：now。 每次部署项目时，现在都会为您提供一个新的唯一URL（甚至在上传完成之前）。这些URL看起来像这样（为您自动确定应用程序的名称）： 。在将部署投入生产时，您只需选择适当">
+<meta name="keywords" content="zeit.co,docker,node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zeit.co 免费服务器平台">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/09/03/BS00000001/index.html">
+<meta property="og:site_name" content="When I think of you, I smile.">
+<meta property="og:description" content="ZEIT.CO 您可以轻松，快速，可靠地将JavaScript（Node.js）或Docker支持的网站，应用程序和服务带到云端。实际上，任何包含package.json或Dockerfile可以使用一个命令传输到云的目录：now。 每次部署项目时，现在都会为您提供一个新的唯一URL（甚至在上传完成之前）。这些URL看起来像这样（为您自动确定应用程序的名称）： 。在将部署投入生产时，您只需选择适当">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://www.dwxnqswxl.cn/2018/09/03/BS00000001/1.png">
+<meta property="og:updated_time" content="2018-09-10T09:02:05.082Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zeit.co 免费服务器平台">
+<meta name="twitter:description" content="ZEIT.CO 您可以轻松，快速，可靠地将JavaScript（Node.js）或Docker支持的网站，应用程序和服务带到云端。实际上，任何包含package.json或Dockerfile可以使用一个命令传输到云的目录：now。 每次部署项目时，现在都会为您提供一个新的唯一URL（甚至在上传完成之前）。这些URL看起来像这样（为您自动确定应用程序的名称）： 。在将部署投入生产时，您只需选择适当">
+<meta name="twitter:image" content="https://www.dwxnqswxl.cn/2018/09/03/BS00000001/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.png">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/jquery-ui-1.10.3.min.js"></script>
+  <script src="/js/jquery.fullpage.min.js"></script>
+  <script src="/js/head.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+  <script type="text/javascript">
+    var a_idx = 0;
+   
+    jQuery(document).ready(function ($) {
+        $("body").click(function (e) {
+          var a = new Array("富强", "Prosperity", "民主", "Democracy", "文明", "Civility", "和谐", "Harmony", "自由", "Freedom", "平等", "Equality", "公正", "Justice", "法治", "Rule of Law", "爱国", "Patriotism", "敬业", "Dedication", "诚信", "Integrity", "友善", "Friendship");
+          var $i = $("<span/>").text(a[a_idx]); a_idx = (a_idx + 1) % a.length; var x = e.pageX, y = e.pageY;
+          var selectColor = "#fff";
+          if (!isHomePage()) {
+            var clickColor = ['#ff5f45', '#0798ec', '#fc6c7c', '#fec401', '#fecc7c', "#ff5f45"];
+            var index = Math.floor((Math.random() * clickColor.length));
+            selectColor = clickColor[index];
+          }
+
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": selectColor,
+            "font-size": "20px"
+          });
+          $("body").append($i);
+          $i.animate({
+            "top": y - 180,
+            "opacity": 0
+          }, 2000, function () { $i.remove(); });
+        });
+
+        function isHomePage() {
+          var localUrl = window.location.href;
+          https://www.dwxqnswxl.cn/(|#page(1|2|3|4|5|6|7|8|9))
+          var regex = new RegExp("^https?://(test-)?(www|blog)\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(/#page[0-9]$))$", "i");
+          return regex.test(localUrl);
+      }
+    });
+
+   
+  </script>
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div id="container">  
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 10px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cool">Cool</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+<article id="post-BS00000001" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      zeit.co 免费服务器平台
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/03/BS00000001/" class="article-date">
+	  <time datetime="2018-09-03T02:59:08.000Z" itemprop="datePublished">2018-09-03</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/部署/">部署</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ZEIT-CO"><a href="#ZEIT-CO" class="headerlink" title="ZEIT.CO"></a>ZEIT.CO</h1><ul>
+<li>您可以轻松，快速，可靠地将JavaScript（Node.js）或Docker支持的网站，应用程序和服务带到云端。实际上，任何包含package.json或Dockerfile可以使用一个命令传输到云的目录：now。</li>
+<li>每次部署项目时，现在都会为您提供一个新的唯一URL（甚至在上传完成之前）。这些URL看起来像这样（为您自动确定应用程序的名称）： 。在将部署投入生产时，您只需选择适当的别名（自定义域）。my-app my-app-erkgfjtrna.now.sh</li>
+</ul>
+<hr>
+<h2 id="简单部署"><a href="#简单部署" class="headerlink" title="简单部署"></a>简单部署</h2><p><strong>(我是用windows10 系统)</strong><br>下载推荐使用的客户端 ，在macOS，Windows和Linux上通过npm或作为预先构建的二进制文件提供。但是，推荐的安装机制是Now Desktop（包括Now CLI，并确保它始终是最新的）。</p>
+<p>将自己写好的静态网页放在一个文件夹里。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  .\now-win.exe .\public\</span></span><br><span class="line"></span><br><span class="line">PS E:\hexo\hexoblog&gt; .\now-win.exe .\public\</span><br><span class="line">&gt; UPDATE AVAILABLE The latest version of Now CLI is 11.4.1</span><br><span class="line">&gt; Read more about how to update here: https://zeit.co/update-cli</span><br><span class="line">&gt; Deploying E:\hexo\hexoblog\public under pzwdshxzt</span><br><span class="line">&gt; Your deployment<span class="string">'s code and logs will be publicly accessible because you are subscribed to the OSS plan.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; NOTE: You can use `now --public` or upgrade your plan (https://zeit.co/account/plan) to skip this prompt</span></span><br><span class="line"><span class="string">&gt; Synced 70 files (1.57MB) [12s]</span></span><br><span class="line"><span class="string">&gt; https://public-ehzfoxryxi.now.sh [in clipboard] [2s]</span></span><br><span class="line"><span class="string">&gt; Deployment complete!</span></span><br></pre></td></tr></table></figure>
+<p>看到这里就表示成功了。</p>
+<p>每次部署都会是不一样的域名，域名也不是很好记，但是你可以用自己的域名部署上去。</p>
+<h2 id="删除部署"><a href="#删除部署" class="headerlink" title="删除部署"></a>删除部署</h2><p>需要删除已经废弃的部署呢，也很简单</p>
+<p>rm 命令可以删除<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PS E:\hexo\hexoblog&gt; .\now-win.exe rm https://public-athxetfvht.now.sh</span><br><span class="line">&gt; UPDATE AVAILABLE The latest version of Now CLI is 11.4.1</span><br><span class="line">&gt; Read more about how to update here: https://zeit.co/update-cli</span><br><span class="line">&gt; Found 1 deployment <span class="keyword">for</span> removal <span class="keyword">in</span> pzwdshxzt [1s]</span><br><span class="line">&gt; The following 1 deployment will be permanently removed:</span><br><span class="line">  P4XeN5ZnH7skCRzvz4sa0piS      https://public-athxetfvht.now.sh      1m ago</span><br><span class="line">&gt; Are you sure? [y/N] y</span><br><span class="line">&gt; Success! 1 deployment removed [550ms]</span><br><span class="line">- public-athxetfvht.now.sh</span><br></pre></td></tr></table></figure></p>
+<h2 id="替换域名"><a href="#替换域名" class="headerlink" title="替换域名"></a>替换域名</h2><p>使用 alias 将制定的部署包替换成 自己的域名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PS E:\hexo\hexoblog&gt; .\now-win.exe <span class="built_in">alias</span> https://public-fmqneyczqv.now.sh blog.dwxqnswxl.cn</span><br><span class="line">&gt; UPDATE AVAILABLE The latest version of Now CLI is 11.4.1</span><br><span class="line">&gt; Read more about how to update here: https://zeit.co/update-cli</span><br><span class="line">&gt; Assigning <span class="built_in">alias</span> blog.dwxqnswxl.cn to deployment public-fmqneyczqv.now.sh</span><br><span class="line">&gt; Nameservers: f1g1ns1.dnspod.net, f1g1ns2.dnspod.net</span><br><span class="line">&gt; Error! We couldn<span class="string">'t verify the domain dwxqnswxl.cn.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  Please make sure that your nameservers point to zeit.world.</span></span><br><span class="line"><span class="string">  Examples: (full list at https://zeit.world)</span></span><br><span class="line"><span class="string">    a.zeit.world        96.45.80.1</span></span><br><span class="line"><span class="string">    b.zeit.world        46.31.236.1</span></span><br><span class="line"><span class="string">    c.zeit.world        43.247.170.1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  As an alternative, you can add following records to your DNS settings:</span></span><br><span class="line"><span class="string">    name        type         value</span></span><br><span class="line"><span class="string">    _now        TXT          a5bddbba39391c47c4d754069f1442d136a1dca94680a56f007231732c1b1932</span></span><br><span class="line"><span class="string">                ALIAS        alias.zeit.co</span></span><br></pre></td></tr></table></figure></p>
+<p>第一次失败了，体会提示你在你的域名解析该怎么填写，如上最后两行；<br>然后再域名解析中添加就好了<br><img src="/2018/09/03/BS00000001/1.png" title="域名配置"></p>
+<p>然后再试下，就好了</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS E:\hexo\hexoblog&gt; .\now-win.exe <span class="built_in">alias</span> https://public-fmqneyczqv.now.sh blog.dwxqnswxl.cn</span><br><span class="line">&gt; UPDATE AVAILABLE The latest version of Now CLI is 11.4.1</span><br><span class="line">&gt; Read more about how to update here: https://zeit.co/update-cli</span><br><span class="line">&gt; Assigning <span class="built_in">alias</span> blog.dwxqnswxl.cn to deployment public-fmqneyczqv.now.sh</span><br><span class="line">&gt; Certificate <span class="keyword">for</span> blog.dwxqnswxl.cn (cert_aaGncmbkE1U2BhE) created [18s]</span><br><span class="line">&gt; Success! blog.dwxqnswxl.cn now points to public-fmqneyczqv.now.sh [21s]</span><br></pre></td></tr></table></figure>
+<h2 id="docker-部署"><a href="#docker-部署" class="headerlink" title="docker 部署"></a>docker 部署</h2><p>docker部署也很简单。<br>准备一个Dockerfile 文件 和 这个dockerfile 需要的文件<br>然后 now 就可以(now-win.exe)</p>
+<h2 id="now-for-github"><a href="#now-for-github" class="headerlink" title="now for github"></a>now for github</h2><p>这可以提交立即部署，需要再github上面安装 now 应用。<br>然后必须要 Pull requests 一个 now.json 文件在github上面。<br>这个文件里面可以是 {}。没有东西也可以<br>然后就可以提交一次就可以看到。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
+<thead>
+<tr>
+<th><center style="width: 150px;">  命令   </center></th>
+<th style="text-align:left"><center> 描述   </center></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>now [path] …</td>
+<td style="text-align:left">调用时now，当前目录中的文件将上载到Now，并将创建新的部署。之后，您将立即收到其网址，以便与全球其他人分享。该[path]可以是一个文件（导致静态部署）或目录（部署类型将根据内容来确定）。如果要一次部署多个路径，请阅读此内容。</td>
+</tr>
+<tr>
+<td>now ls  &#124; list [app]</td>
+<td style="text-align:left">显示所有部署的列表。如果[app]已定义，则仅列出该命名空间下的部署。</td>
+</tr>
+<tr>
+<td>now rm   &#124; remove [id]</td>
+<td style="text-align:left">从我们的平台中删除部署。该[id]参数可以是部署（例如网址<a href="https://static-ytbbrhoggd.now.sh" target="_blank" rel="noopener">https://static-ytbbrhoggd.now.sh</a> 或主机名（例如static-ytbbrhoggd.now.sh）。</td>
+</tr>
+<tr>
+<td>now ln  &#124; alias [id] [url]</td>
+<td style="text-align:left">我们为您配置现有部署的别名。您可以在此处阅读有关如何从此子命令中获取最多功能的更多信息。</td>
+</tr>
+<tr>
+<td>now domains [name]</td>
+<td style="text-align:left">允许您直接从命令行管理域名（在将它们用作别名之前）。</td>
+</tr>
+<tr>
+<td>now certs [cmd]</td>
+<td style="text-align:left">默认情况下，Now将自动为您的部署配置证书。使用此子命令，您可以看到它们何时到期并上传您自己的子命令</td>
+</tr>
+<tr>
+<td>and so on</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/css/images/wechat.png',
+  alipayImage: '/css/images/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/09/03/BS00000001/" target="_blank" title="zeit.co 免费服务器平台">https://www.dwxnqswxl.cn/2018/09/03/BS00000001/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/03/YM00000006/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          String（JDK1.8） 源码阅读记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/17/YM00000001/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HashMap（JDK1.8）源码阅读记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ZEIT-CO"><span class="nav-number">1.</span> <span class="nav-text">ZEIT.CO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单部署"><span class="nav-number">1.1.</span> <span class="nav-text">简单部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除部署"><span class="nav-number">1.2.</span> <span class="nav-text">删除部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换域名"><span class="nav-number">1.3.</span> <span class="nav-text">替换域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-部署"><span class="nav-number">1.4.</span> <span class="nav-text">docker 部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#now-for-github"><span class="nav-number">1.5.</span> <span class="nav-text">now for github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.6.</span> <span class="nav-text">常用命令</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      <!--  -->
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2016 - 2018 When I think of you, I smile. All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+      
+    </div>
+
+    
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cool" class="mobile-nav-link">Cool</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-124580586-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6e73f99d7690f3d6659d4522f6b5aea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            When I think of you, I smile.
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Huangjinxing All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+    
+   
+  
+</body>
+</html>

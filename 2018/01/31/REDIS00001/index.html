@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>windows docker redis cluster 集群部署(linux一样) | When I think of you, I smile.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="java spring hexo vue Go Python" />
+  
+  
+    <meta name="google-site-verification" content="8NokF_zWvibnQn-qIPhhqlULn-ez6nP-6FdpOkePd3Y" />
+  
+  
+    <meta name="baidu-site-verification" content="dIzD0rDnsN" />
+  
+  
+  <meta name="description" content="废话不多说直接进入主题  docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了 pull redis (我采用3.0.7的redis版本，用其他也行)1# docker pull redis:3.0.7   构建 redis-cluster创建Dockerfile 文件1234FROM redis:3.0.7EXPOSE 6379ADD redis.conf">
+<meta name="keywords" content="Docker,Redis,集群,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Docker Redis cluster 集群部署(linux一样)">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/01/31/REDIS00001/index.html">
+<meta property="og:site_name" content="When I think of you, I smile.">
+<meta property="og:description" content="废话不多说直接进入主题  docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了 pull redis (我采用3.0.7的redis版本，用其他也行)1# docker pull redis:3.0.7   构建 redis-cluster创建Dockerfile 文件1234FROM redis:3.0.7EXPOSE 6379ADD redis.conf">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-30T03:09:31.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows Docker Redis cluster 集群部署(linux一样)">
+<meta name="twitter:description" content="废话不多说直接进入主题  docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了 pull redis (我采用3.0.7的redis版本，用其他也行)1# docker pull redis:3.0.7   构建 redis-cluster创建Dockerfile 文件1234FROM redis:3.0.7EXPOSE 6379ADD redis.conf">
+  
+    <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.png">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/jquery-ui-1.10.3.min.js"></script>
+  <script src="/js/jquery.fullpage.min.js"></script>
+  <script src="/js/head.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+  <script type="text/javascript">
+    var a_idx = 0;
+   
+    jQuery(document).ready(function ($) {
+        $("body").click(function (e) {
+          var a = new Array("富强", "Prosperity", "民主", "Democracy", "文明", "Civility", "和谐", "Harmony", "自由", "Freedom", "平等", "Equality", "公正", "Justice", "法治", "Rule of Law", "爱国", "Patriotism", "敬业", "Dedication", "诚信", "Integrity", "友善", "Friendship");
+          var $i = $("<span/>").text(a[a_idx]); a_idx = (a_idx + 1) % a.length; var x = e.pageX, y = e.pageY;
+          var selectColor = "#fff";
+          if (!isHomePage()) {
+            var clickColor = ['#ff5f45', '#0798ec', '#fc6c7c', '#fec401', '#fecc7c', "#ff5f45"];
+            var index = Math.floor((Math.random() * clickColor.length));
+            selectColor = clickColor[index];
+          }
+
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": selectColor,
+            "font-size": "20px"
+          });
+          $("body").append($i);
+          $i.animate({
+            "top": y - 180,
+            "opacity": 0
+          }, 2000, function () { $i.remove(); });
+        });
+
+        function isHomePage() {
+          var localUrl = window.location.href;
+          https://www.dwxqnswxl.cn/(|#page(1|2|3|4|5|6|7|8|9))
+          var regex = new RegExp("^https?://(test-)?(www|blog)\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(/#page[0-9]$))$", "i");
+          return regex.test(localUrl);
+      }
+    });
+
+   
+  </script>
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div id="container">  
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 10px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cool">Cool</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+<article id="post-REDIS00001" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Windows Docker Redis cluster 集群部署(linux一样)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/01/31/REDIS00001/" class="article-date">
+	  <time datetime="2018-01-31T08:49:55.000Z" itemprop="datePublished">2018-01-31</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Redis/">Redis</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>废话不多说直接进入主题</p>
+</blockquote>
+<p>docker 安装我采用的是window10 hyper-v ，直装版，这里就不做操作了</p>
+<h1 id="pull-redis"><a href="#pull-redis" class="headerlink" title="pull redis"></a>pull redis</h1><ul>
+<li>(我采用3.0.7的redis版本，用其他也行)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># docker pull redis:3.0.7</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="构建-redis-cluster"><a href="#构建-redis-cluster" class="headerlink" title="构建 redis-cluster"></a>构建 redis-cluster</h1><h2 id="创建Dockerfile-文件"><a href="#创建Dockerfile-文件" class="headerlink" title="创建Dockerfile 文件"></a>创建Dockerfile 文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM redis:3.0.7</span><br><span class="line">EXPOSE 6379</span><br><span class="line">ADD redis.conf /redis.conf</span><br><span class="line">ENTRYPOINT [ &quot;redis-server&quot;, &quot;/redis.conf&quot; ]</span><br></pre></td></tr></table></figure>
+<p>dockerfile文件阅读也比较简单~</p>
+<h2 id="进入dockerfile目录"><a href="#进入dockerfile目录" class="headerlink" title="进入dockerfile目录"></a>进入dockerfile目录</h2><p>接下来<br>在同目录下放redis.conf(3.0.7版本)的配置文件<br>修改dockerfile目录下的redis.conf 文件<br>构建 dokcer images<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># docker build -t  “redis-cluster” .</span><br></pre></td></tr></table></figure></p>
+<p>注意后面有一个点当前目录<br>没写tag 默认latest</p>
+<h2 id="为集群选定ip"><a href="#为集群选定ip" class="headerlink" title="为集群选定ip"></a>为集群选定ip</h2><p>为了使容器ip固定 重启后也是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># docker network create --subnet=172.11.0.0/16  redis //创建网络</span><br></pre></td></tr></table></figure></p>
+<p>创建 redis-cluster 结点容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># docker run -d --net redis --ip 172.11.0.91 -p 8001:6379 --name redis1 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.92 -p 8002:6379 --name redis2 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.93 -p 8003:6379 --name redis3 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.94 -p 8004:6379 --name redis4 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.95 -p 8005:6379 --name redis5 redis-cluster</span><br><span class="line"></span><br><span class="line"># docker run -d --net redis --ip 172.11.0.96 -p 8006:6379 --name redis6 redis-cluster</span><br></pre></td></tr></table></figure></p>
+<p>有的人说开发一个端口给客户端使用就好了 就把 -p 和 后面的端口去掉就好了</p>
+<h1 id="集群管理ruby"><a href="#集群管理ruby" class="headerlink" title="集群管理ruby"></a>集群管理ruby</h1><p>接下来使用官方的 redis-trib.rb  （linux直接安装ruby 启动就好了）</p>
+<h2 id="下载ruby"><a href="#下载ruby" class="headerlink" title="下载ruby"></a>下载ruby</h2><p>所以要下载ruby<br>这里直接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker pull ruby</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="dockerfile构建可用ruby"><a href="#dockerfile构建可用ruby" class="headerlink" title="dockerfile构建可用ruby"></a>dockerfile构建可用ruby</h2><p>然后通过构建Dockerfile制作redis集群管理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM ruby</span><br><span class="line">ADD redis-3.0.7.gem /redis-3.0.7.gem</span><br><span class="line">ADD redis-trib.rb /redis-trib.rb</span><br></pre></td></tr></table></figure></p>
+<p>这两个文件放在目录下<br>Redis-3.0.7.gem 基于国情要导入，可以直接去网上下载<br>如果不下载就不用导入<br>直接 gem install redis –version 3.0.7<br>就可以直接安装<br>去掉dockerfile 上面那一行<br>然后进入该目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker build “ruby-redis” .</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动ruby"><a href="#启动ruby" class="headerlink" title="启动ruby"></a>启动ruby</h2><p>启动 ruby-redis<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker run --net=redis --ip 172.11.0.100--name ruby11 -i -d ruby-redis</span></span><br></pre></td></tr></table></figure></p>
+<p>要在同一个网络 redis 才能互连</p>
+<h2 id="进入ruby起得容器"><a href="#进入ruby起得容器" class="headerlink" title="进入ruby起得容器"></a>进入ruby起得容器</h2><p>进入改ruby 容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker exec -it ruby11 /bin/bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="在容器中安装"><a href="#在容器中安装" class="headerlink" title="在容器中安装"></a>在容器中安装</h2><p>安装redis-gem<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gem install -l redis-3.0.7.gem 或者</span></span><br><span class="line"><span class="comment"># gem install redis –version 3.0.7</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./redis-trib.rb  create --replicas 1  172.11.0.91:6379 172.11.0.92:6379 172.11.0.93:6379 172.11.0.94:6379 172.11.0.95:6379 172.11.0.96:6379</span></span><br></pre></td></tr></table></figure>
+<p>1表示 master 后面有一个 slave cluster<br>然后输入yes 就可以了</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>随便登录一个节点测试连接集群测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cluster node</span></span><br><span class="line"><span class="comment"># cluster info</span></span><br></pre></td></tr></table></figure></p>
+<p>设置k-v 测试<br>切换结点测试<br>宿主机测试：<br>Docker ip 10.0.75.1<br>端口就是容器对外开放的端口<br>另一个是容器间端口使用</p>
+<blockquote>
+<p>看不懂可以到我简书上，有图文！    —— <a href="https://www.jianshu.com/p/4e02b0f567a0" target="_blank"> [ 简书 ]</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/css/images/wechat.png',
+  alipayImage: '/css/images/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/01/31/REDIS00001/" target="_blank" title="Windows Docker Redis cluster 集群部署(linux一样)">https://www.dwxnqswxl.cn/2018/01/31/REDIS00001/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/03/YM00000005/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ArrayList（JDK1.8） 源码阅读记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/30/LC00000003/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leetcode - 旋转数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pull-redis"><span class="nav-number">1.</span> <span class="nav-text">pull redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建-redis-cluster"><span class="nav-number">2.</span> <span class="nav-text">构建 redis-cluster</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Dockerfile-文件"><span class="nav-number">2.1.</span> <span class="nav-text">创建Dockerfile 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入dockerfile目录"><span class="nav-number">2.2.</span> <span class="nav-text">进入dockerfile目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为集群选定ip"><span class="nav-number">2.3.</span> <span class="nav-text">为集群选定ip</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群管理ruby"><span class="nav-number">3.</span> <span class="nav-text">集群管理ruby</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载ruby"><span class="nav-number">3.1.</span> <span class="nav-text">下载ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dockerfile构建可用ruby"><span class="nav-number">3.2.</span> <span class="nav-text">dockerfile构建可用ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动ruby"><span class="nav-number">3.3.</span> <span class="nav-text">启动ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入ruby起得容器"><span class="nav-number">3.4.</span> <span class="nav-text">进入ruby起得容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在容器中安装"><span class="nav-number">3.5.</span> <span class="nav-text">在容器中安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动集群"><span class="nav-number">3.6.</span> <span class="nav-text">启动集群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      <!--  -->
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2016 - 2018 When I think of you, I smile. All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+      
+    </div>
+
+    
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cool" class="mobile-nav-link">Cool</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-124580586-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6e73f99d7690f3d6659d4522f6b5aea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            When I think of you, I smile.
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Huangjinxing All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+    
+   
+  
+</body>
+</html>

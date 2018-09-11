@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java 8 - lambda | When I think of you, I smile.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="java spring hexo vue Go Python" />
+  
+  
+    <meta name="google-site-verification" content="8NokF_zWvibnQn-qIPhhqlULn-ez6nP-6FdpOkePd3Y" />
+  
+  
+    <meta name="baidu-site-verification" content="dIzD0rDnsN" />
+  
+  
+  <meta name="description" content="lambda学习记录 lambda，java 8 引入 lambda 将是对使用集合的一次重大改变，虽然看着很难懂，但是用着用着就好了，本文将用几个例子举例,本文参考的网上的一些例子。违删。新手挑战区。  lambda 主要的表示形式 (params) -&amp;gt; expression(params) -&amp;gt; statement(params) -&amp;gt; { statements } Exa">
+<meta name="keywords" content="基础,lambda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 8 - lambda">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2017/11/30/JC00000005/index.html">
+<meta property="og:site_name" content="When I think of you, I smile.">
+<meta property="og:description" content="lambda学习记录 lambda，java 8 引入 lambda 将是对使用集合的一次重大改变，虽然看着很难懂，但是用着用着就好了，本文将用几个例子举例,本文参考的网上的一些例子。违删。新手挑战区。  lambda 主要的表示形式 (params) -&amp;gt; expression(params) -&amp;gt; statement(params) -&amp;gt; { statements } Exa">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-24T04:26:02.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 8 - lambda">
+<meta name="twitter:description" content="lambda学习记录 lambda，java 8 引入 lambda 将是对使用集合的一次重大改变，虽然看着很难懂，但是用着用着就好了，本文将用几个例子举例,本文参考的网上的一些例子。违删。新手挑战区。  lambda 主要的表示形式 (params) -&amp;gt; expression(params) -&amp;gt; statement(params) -&amp;gt; { statements } Exa">
+  
+    <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.png">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/jquery-ui-1.10.3.min.js"></script>
+  <script src="/js/jquery.fullpage.min.js"></script>
+  <script src="/js/head.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+  <script type="text/javascript">
+    var a_idx = 0;
+   
+    jQuery(document).ready(function ($) {
+        $("body").click(function (e) {
+          var a = new Array("富强", "Prosperity", "民主", "Democracy", "文明", "Civility", "和谐", "Harmony", "自由", "Freedom", "平等", "Equality", "公正", "Justice", "法治", "Rule of Law", "爱国", "Patriotism", "敬业", "Dedication", "诚信", "Integrity", "友善", "Friendship");
+          var $i = $("<span/>").text(a[a_idx]); a_idx = (a_idx + 1) % a.length; var x = e.pageX, y = e.pageY;
+          var selectColor = "#fff";
+          if (!isHomePage()) {
+            var clickColor = ['#ff5f45', '#0798ec', '#fc6c7c', '#fec401', '#fecc7c', "#ff5f45"];
+            var index = Math.floor((Math.random() * clickColor.length));
+            selectColor = clickColor[index];
+          }
+
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": selectColor,
+            "font-size": "20px"
+          });
+          $("body").append($i);
+          $i.animate({
+            "top": y - 180,
+            "opacity": 0
+          }, 2000, function () { $i.remove(); });
+        });
+
+        function isHomePage() {
+          var localUrl = window.location.href;
+          https://www.dwxqnswxl.cn/(|#page(1|2|3|4|5|6|7|8|9))
+          var regex = new RegExp("^https?://(test-)?(www|blog)\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(/#page[0-9]$))$", "i");
+          return regex.test(localUrl);
+      }
+    });
+
+   
+  </script>
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div id="container">  
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 10px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cool">Cool</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+<article id="post-JC00000005" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Java 8 - lambda
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/11/30/JC00000005/" class="article-date">
+	  <time datetime="2017-11-30T03:39:32.000Z" itemprop="datePublished">2017-11-30</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h1><p>学习记录 lambda，java 8 引入 lambda 将是对使用集合的一次重大改变，虽然看着很难懂，但是用着用着就好了，本文将用几个例子举例,本文参考的网上的一些例子。违删。新手挑战区。</p>
+<hr>
+<h2 id="lambda-主要的表示形式"><a href="#lambda-主要的表示形式" class="headerlink" title="lambda 主要的表示形式"></a>lambda 主要的表示形式</h2><blockquote>
+<p>(params) -&gt; expression<br>(params) -&gt; statement<br>(params) -&gt; { statements }</p>
+<p>Example<br>（） - &gt; System.out.println(“ Lambda Expressions”);<br>(int i, int j) -&gt; System.out.println(i+j);</p>
+</blockquote>
+<h3 id="Example-No-1"><a href="#Example-No-1" class="headerlink" title="Example No.1"></a>Example No.1</h3><blockquote>
+<p>遍历数组等</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List features = Arrays.asList(<span class="string">"Lambdas"</span>, <span class="string">"Method"</span>, <span class="string">"Java"</span>, <span class="string">"Hello"</span>);</span><br><span class="line">features.forEach(n -&gt; System.out.println(n));</span><br><span class="line"><span class="comment">// 使用Java 8的方法引用更方便，方法引用由::双冒号操作符标示，</span></span><br><span class="line">features.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h3 id="Example-No-2"><a href="#Example-No-2" class="headerlink" title="Example No.2"></a>Example No.2</h3><blockquote>
+<p>获取数字的个数、最小值、最大值、总和以及平均值</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; primes = Arrays.asList(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>);</span><br><span class="line">IntSummaryStatistics stats = primes.stream().mapToInt((x) -&gt; x).summaryStatistics();</span><br><span class="line">System.out.println(<span class="string">"Highest prime number in List : "</span> + stats.getMax());</span><br><span class="line">System.out.println(<span class="string">"Lowest prime number in List : "</span> + stats.getMin());</span><br><span class="line">System.out.println(<span class="string">"Sum of all prime numbers : "</span> + stats.getSum());</span><br><span class="line">System.out.println(<span class="string">"Average of all prime numbers : "</span> + stats.getAverage());</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：<br>Highest prime number in List : 29<br>Lowest prime number in List : 2<br>Sum of all prime numbers : 129<br>Average of all prime numbers : 12.9</p>
+</blockquote>
+<h3 id="Example-No-3"><a href="#Example-No-3" class="headerlink" title="Example No.3"></a>Example No.3</h3><blockquote>
+<p>map - reduce 例子</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; costBeforeTax = Arrays.asList(<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">400</span>, <span class="number">500</span>);</span><br><span class="line"><span class="comment">//这个是将每个数都变成浮点数 * 12</span></span><br><span class="line">costBeforeTax.stream().map((cost) -&gt; cost + .<span class="number">12</span> * cost ).forEach(System.out::println);</span><br><span class="line"><span class="comment">//这个是将每个数都变成浮点数 * 12 然后再算和</span></span><br><span class="line"><span class="keyword">double</span> bill = costBeforeTax.stream().map((cost) -&gt; cost + .<span class="number">12</span>*cost).reduce((sum, cost) -&gt; sum + cost).get();</span><br><span class="line">System.out.println(<span class="string">"Total : "</span> + bill);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：<br>112.0<br>224.0<br>336.0<br>448.0<br>560.0<br>Total : 1680.0</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map---对列表的每个元素应用函数使用</span><br><span class="line"><span class="comment">// 将字符串换成大写并用逗号链接起来</span></span><br><span class="line">List&lt;String&gt; G7 = Arrays.asList(<span class="string">"USA"</span>, <span class="string">"Japan"</span>, <span class="string">"France"</span>, <span class="string">"Germany"</span>, <span class="string">"Italy"</span>, <span class="string">"U.K."</span>,<span class="string">"Canada"</span>);</span><br><span class="line">String G7Countries = G7.stream().map(x -&gt; x.toUpperCase()).collect(Collectors.joining(<span class="string">", "</span>));</span><br><span class="line">System.out.println(G7Countries);</span><br></pre></td></tr></table></figure>
+<h3 id="Example-No-4"><a href="#Example-No-4" class="headerlink" title="Example No.4"></a>Example No.4</h3><blockquote>
+<p>匿名类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java 8之前：</span></span><br><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     System.out.println(<span class="string">"Rock it!"</span>);</span><br><span class="line">     System.out.println(<span class="string">"Hello world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br><span class="line"><span class="comment">//java8 支持</span></span><br><span class="line">  <span class="keyword">new</span> Thread (() -&gt; &#123;</span><br><span class="line">	  System.out.println(<span class="string">"Rock it!"</span>);</span><br><span class="line">      System.out.println(<span class="string">"hello world!"</span>);</span><br><span class="line">  &#125;).start();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：<br>Rock it!<br>Hello world!</p>
+</blockquote>
+<h3 id="Example-No-5"><a href="#Example-No-5" class="headerlink" title="Example No.5"></a>Example No.5</h3><blockquote>
+<p>函数式接口 Predicate<br>Java 8 也添加了一个包，叫做 java.util.function。它包含了很多类，用来支持 Java 的函数式编程。其中一个便是 Predicate，使用 java.util.function.Predicate 函数式接口以及 lambda 表达式，可以向 API 方法添加逻辑，用更少的代码支持更多的动态行为。下面是 Java 8 Predicate 的例子，展示了过滤集合数据的多种常用方法。Predicate 接口非常适用于做过滤。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 甚至可以用and()、or()和xor()逻辑函数来合并Predicate，</span></span><br><span class="line"><span class="comment">// 例如要找到所有以J开始，长度为四个字母的名字，你可以合并两个Predicate并传入</span></span><br><span class="line">List&lt;String&gt; languages = Arrays.asList(<span class="string">"Java"</span>, <span class="string">"Scala"</span>, <span class="string">"C++"</span>, <span class="string">"Haskell"</span>, <span class="string">"Lisp"</span>,<span class="string">"h"</span>,<span class="string">"d"</span>,<span class="string">"map"</span>,<span class="string">"r"</span>);</span><br><span class="line">Predicate&lt;String&gt; startsWithJ = (n) -&gt; n.startsWith(<span class="string">"J"</span>);</span><br><span class="line">Predicate&lt;String&gt; fourLetterLong = (n) -&gt; n.length() == <span class="number">4</span>;</span><br><span class="line">languages.stream()</span><br><span class="line">    .filter(startsWithJ.and(fourLetterLong))</span><br><span class="line">    .forEach((n) -&gt; System.out.print(<span class="string">"nName, which starts with 'J' and four letter long is : "</span> + n));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果<br>Original List : [Java, Scala, C++, Haskell, Lisp, h, d, map, r], filtered list : [Java, Scala, C++, Haskell, Lisp, map]</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/css/images/wechat.png',
+  alipayImage: '/css/images/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2017/11/30/JC00000005/" target="_blank" title="Java 8 - lambda">https://www.dwxnqswxl.cn/2017/11/30/JC00000005/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/01/JC00000003/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Map遍历
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/30/JC00000002/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java边遍历边删除的问题(ConcurrentModificationException异常)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lambda"><span class="nav-number">1.</span> <span class="nav-text">lambda</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda-主要的表示形式"><span class="nav-number">1.1.</span> <span class="nav-text">lambda 主要的表示形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-No-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">Example No.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-No-2"><span class="nav-number">1.1.2.</span> <span class="nav-text">Example No.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-No-3"><span class="nav-number">1.1.3.</span> <span class="nav-text">Example No.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-No-4"><span class="nav-number">1.1.4.</span> <span class="nav-text">Example No.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-No-5"><span class="nav-number">1.1.5.</span> <span class="nav-text">Example No.5</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      <!--  -->
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2016 - 2018 When I think of you, I smile. All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+      
+    </div>
+
+    
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cool" class="mobile-nav-link">Cool</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-124580586-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6e73f99d7690f3d6659d4522f6b5aea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            When I think of you, I smile.
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Huangjinxing All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+    
+   
+  
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java 集合中常见 checkforcomodification() 方法的作用？ | When I think of you, I smile.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="java spring hexo vue Go Python" />
+  
+  
+    <meta name="google-site-verification" content="8NokF_zWvibnQn-qIPhhqlULn-ez6nP-6FdpOkePd3Y" />
+  
+  
+    <meta name="baidu-site-verification" content="dIzD0rDnsN" />
+  
+  
+  <meta name="description" content="Java 集合中常见 checkForComodification() 方法的到底有什么作用？还有 modCount 和 expectedModCount 作用？ 主要是用来实现 fail-fast 机制 有两个线程（线程 A，线程 B），其中线程 A 负责遍历 list、线程 B 修改 list。 -线程 A 在遍历 list 过程的某个时候（此时 expectedModCount = mod">
+<meta name="keywords" content="基础,源码阅读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 集合中常见 checkForComodification() 方法的作用？">
+<meta property="og:url" content="https://www.dwxnqswxl.cn/2018/08/03/YM00000004/index.html">
+<meta property="og:site_name" content="When I think of you, I smile.">
+<meta property="og:description" content="Java 集合中常见 checkForComodification() 方法的到底有什么作用？还有 modCount 和 expectedModCount 作用？ 主要是用来实现 fail-fast 机制 有两个线程（线程 A，线程 B），其中线程 A 负责遍历 list、线程 B 修改 list。 -线程 A 在遍历 list 过程的某个时候（此时 expectedModCount = mod">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-24T02:11:57.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 集合中常见 checkForComodification() 方法的作用？">
+<meta name="twitter:description" content="Java 集合中常见 checkForComodification() 方法的到底有什么作用？还有 modCount 和 expectedModCount 作用？ 主要是用来实现 fail-fast 机制 有两个线程（线程 A，线程 B），其中线程 A 负责遍历 list、线程 B 修改 list。 -线程 A 在遍历 list 过程的某个时候（此时 expectedModCount = mod">
+  
+    <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.png">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/jquery-ui-1.10.3.min.js"></script>
+  <script src="/js/jquery.fullpage.min.js"></script>
+  <script src="/js/head.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+  <script type="text/javascript">
+    var a_idx = 0;
+   
+    jQuery(document).ready(function ($) {
+        $("body").click(function (e) {
+          var a = new Array("富强", "Prosperity", "民主", "Democracy", "文明", "Civility", "和谐", "Harmony", "自由", "Freedom", "平等", "Equality", "公正", "Justice", "法治", "Rule of Law", "爱国", "Patriotism", "敬业", "Dedication", "诚信", "Integrity", "友善", "Friendship");
+          var $i = $("<span/>").text(a[a_idx]); a_idx = (a_idx + 1) % a.length; var x = e.pageX, y = e.pageY;
+          var selectColor = "#fff";
+          if (!isHomePage()) {
+            var clickColor = ['#ff5f45', '#0798ec', '#fc6c7c', '#fec401', '#fecc7c', "#ff5f45"];
+            var index = Math.floor((Math.random() * clickColor.length));
+            selectColor = clickColor[index];
+          }
+
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": selectColor,
+            "font-size": "20px"
+          });
+          $("body").append($i);
+          $i.animate({
+            "top": y - 180,
+            "opacity": 0
+          }, 2000, function () { $i.remove(); });
+        });
+
+        function isHomePage() {
+          var localUrl = window.location.href;
+          https://www.dwxqnswxl.cn/(|#page(1|2|3|4|5|6|7|8|9))
+          var regex = new RegExp("^https?://(test-)?(www|blog)\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(/#page[0-9]$))$", "i");
+          return regex.test(localUrl);
+      }
+    });
+
+   
+  </script>
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div id="container">  
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 10px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cool">Cool</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+<article id="post-YM00000004" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Java 集合中常见 checkForComodification() 方法的作用？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/03/YM00000004/" class="article-date">
+	  <time datetime="2018-08-03T06:23:44.000Z" itemprop="datePublished">2018-08-03</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> Java 集合中常见 checkForComodification() 方法的到底有什么作用？还有 modCount 和 expectedModCount 作用？</p>
+<h3 id="主要是用来实现-fail-fast-机制"><a href="#主要是用来实现-fail-fast-机制" class="headerlink" title="主要是用来实现 fail-fast 机制"></a>主要是用来实现 fail-fast 机制</h3><blockquote>
+<p>有两个线程（线程 A，线程 B），其中线程 A 负责遍历 list、线程 B 修改 list。 -线程 A 在遍历 list 过程的某个时候（此时 expectedModCount = modCount=N），线程启动，<br>同时线程 B 增加一个元素，这是 modCount 的值发生改变（modCount + 1 = N + 1）。 线程 A 继续遍历执行 next 方法时，<br>通告 checkForComodification 方法发现 expectedModCount = N ， 而 modCount = N + 1，两者不等，<br>这时就抛出 ConcurrentModificationException 异常，从而产生 fail-fast 机制。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当前取的是 JDK1.8 ArrayList中的代码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The number of times this list has been &lt;i&gt;structurally modified&lt;/i&gt;.</span></span><br><span class="line"><span class="comment"> * Structural modifications are those that change the size of the</span></span><br><span class="line"><span class="comment"> * list, or otherwise perturb it in such a fashion that iterations in</span></span><br><span class="line"><span class="comment"> * progress may yield incorrect results.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This field is used by the iterator and list iterator implementation</span></span><br><span class="line"><span class="comment"> * returned by the &#123;<span class="doctag">@code</span> iterator&#125; and &#123;<span class="doctag">@code</span> listIterator&#125; methods.</span></span><br><span class="line"><span class="comment"> * If the value of this field changes unexpectedly, the iterator (or list</span></span><br><span class="line"><span class="comment"> * iterator) will throw a &#123;<span class="doctag">@code</span> ConcurrentModificationException&#125; in</span></span><br><span class="line"><span class="comment"> * response to the &#123;<span class="doctag">@code</span> next&#125;, &#123;<span class="doctag">@code</span> remove&#125;, &#123;<span class="doctag">@code</span> previous&#125;,</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> set&#125; or &#123;<span class="doctag">@code</span> add&#125; operations.  This provides</span></span><br><span class="line"><span class="comment"> * &lt;i&gt;fail-fast&lt;/i&gt; behavior, rather than non-deterministic behavior in</span></span><br><span class="line"><span class="comment"> * the face of concurrent modification during iteration.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;&lt;b&gt;Use of this field by subclasses is optional.&lt;/b&gt; If a subclass</span></span><br><span class="line"><span class="comment"> * wishes to provide fail-fast iterators (and list iterators), then it</span></span><br><span class="line"><span class="comment"> * merely has to increment this field in its &#123;<span class="doctag">@code</span> add(int, E)&#125; and</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> remove(int)&#125; methods (and any other methods that it overrides</span></span><br><span class="line"><span class="comment"> * that result in structural modifications to the list).  A single call to</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> add(int, E)&#125; or &#123;<span class="doctag">@code</span> remove(int)&#125; must add no more than</span></span><br><span class="line"><span class="comment"> * one to this field, or the iterators (and list iterators) will throw</span></span><br><span class="line"><span class="comment"> * bogus &#123;<span class="doctag">@code</span> ConcurrentModificationExceptions&#125;.  If an implementation</span></span><br><span class="line"><span class="comment"> * does not wish to provide fail-fast iterators, this field may be</span></span><br><span class="line"><span class="comment"> * ignored.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">transient</span> <span class="keyword">int</span> modCount = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>在父类 AbstractList 中定义了一个 int 型的属性：modCount</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">transient</span> <span class="keyword">int</span> modCount = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>在 ArrayList 的所有涉及结构变化的方法中都增加 modCount 的值，包括：add()、remove()、addAll()、removeRange()及 clear()方法。这些方法每调用一次，modCount 的值就加 1。<code>注：add()及addAll()方法的modCount的值是在其中调用的ensureCapacity()方法中增加的。</code><br>AbstractList 中的 iterator()方法（ArrayList 直接继承了这个方法）使用了一个私有内部成员类 Itr，生成一个 Itr 对象（Iterator 接口）返回：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Iterator <span class="title">iterator</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> Itr(); &#125;</span><br></pre></td></tr></table></figure>
+<p>Itr 实现了 Iterator()接口，其中也定义了一个 int 型的属性：expectedModCount，这个属性在 Itr 类初始化时被赋予 ArrayList 对象的 modCount 属性的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> expectedModCount = modCount;</span><br></pre></td></tr></table></figure>
+<p><code>注：内部成员类Itr也是ArrayList类的一个成员，它可以访问所有的AbstractList的属性和方法。理解了这一点，Itr类的实现就容易理解了。</code></p>
+<p>在 Itr.hasNext()方法中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> cursor != size; &#125;</span><br></pre></td></tr></table></figure>
+<p>调用了 AbstractList 的 size，比较当前光标位置是否越界。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　<span class="keyword">try</span></span><br><span class="line">　&#123;</span><br><span class="line">　　Object next = get(cursor);</span><br><span class="line">　　checkForComodification();</span><br><span class="line">　　lastRet = cursor++;</span><br><span class="line">　　<span class="keyword">return</span> next;</span><br><span class="line">　&#125;</span><br><span class="line">　<span class="keyword">catch</span>(IndexOutOfBoundsException e)</span><br><span class="line">　&#123;</span><br><span class="line">　　checkForComodification();</span><br><span class="line">　　<span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">　&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 在对一个集合对象进行跌代操作的同时，并不限制对集合对象的元素进行操作</span></span><br><span class="line"><span class="comment">* 这些操作包括一些可能引起跌代错误的add()或remove()等危险操作。</span></span><br><span class="line"><span class="comment">* 在AbstractList中，使用了一个简单的机制来规避这些风险。</span></span><br><span class="line"><span class="comment">* 这就是modCount和expectedModCount的作用所在</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/css/images/wechat.png',
+  alipayImage: '/css/images/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/08/03/YM00000004/" target="_blank" title="Java 集合中常见 checkForComodification() 方法的作用？">https://www.dwxnqswxl.cn/2018/08/03/YM00000004/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/03/YM00000002/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LinkedList（JDK1.8） 源码阅读记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/03/YM00000005/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ArrayList（JDK1.8） 源码阅读记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要是用来实现-fail-fast-机制"><span class="nav-number">1.</span> <span class="nav-text">主要是用来实现 fail-fast 机制</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      <!--  -->
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2016 - 2018 When I think of you, I smile. All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+      
+    </div>
+
+    
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cool" class="mobile-nav-link">Cool</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-124580586-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6e73f99d7690f3d6659d4522f6b5aea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            When I think of you, I smile.
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Huangjinxing All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+    
+   
+  
+</body>
+</html>
