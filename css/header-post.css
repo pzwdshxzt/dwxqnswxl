@@ -10,6 +10,15 @@
 	letter-spacing: .1px;
 }
 
+
+
+html,body{
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+  
+
 #allheader {
 	background: linear-gradient(120deg, #155799, #159957);
 	background: transparent;
