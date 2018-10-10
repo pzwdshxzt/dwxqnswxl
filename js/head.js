@@ -143,7 +143,7 @@ $(function() {
     ustaRuchY = (10 * lMouseY) / 100;
   });
   animacja();
-  $('.pozycja').fadeOut(2000);
+  $('.pozycja').fadeOut(0);
   $('#c1').fadeOut(2000);
 });
 
@@ -170,7 +170,7 @@ $(document).ready(function() {
     onLeave: function(index, direction){
 			
 			if(index == '1'){
-				$('.pozycja').fadeOut(2000);
+				$('.pozycja').fadeOut(0);
 			}
 			if(index == '6'){
 				$('#c1').fadeOut(2000);
