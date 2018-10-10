@@ -144,7 +144,6 @@ $(function() {
   });
   animacja();
   $('.pozycja').fadeOut(0);
-  $('#c1').fadeOut(2000);
 });
 
 $(document).ready(function() {
@@ -172,17 +171,12 @@ $(document).ready(function() {
 			if(index == '1'){
 				$('.pozycja').fadeOut(0);
 			}
-			if(index == '6'){
-				$('#c1').fadeOut(2000);
-			}
+			
     },
     afterLoad: function(anchorLink, index){
 			
 			if(index == 1){
 				$('.pozycja').fadeIn(2000);
-			}
-			if(index == 6){
-				$('#c1').fadeIn(2000);
 			}
 		}
   });
