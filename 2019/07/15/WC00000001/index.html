@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>微信小程序云云开发之云函数 | When I think of you, I smile.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="java spring hexo vue Go Python" />
+  
+  
+    <meta name="google-site-verification" content="8NokF_zWvibnQn-qIPhhqlULn-ez6nP-6FdpOkePd3Y" />
+  
+  
+    <meta name="baidu-site-verification" content="dIzD0rDnsN" />
+  
+  
+  <meta name="description" content="写在前面 无需自建服务器     在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码 基本上 所有得操作都可以在云函数上使用 定时任务  个人开发者函数个数有限制，所以尽量类似得函数写一起。  新建小程序新建小程序得时候选择云开发模式创建了第一个云开发小程序后，在使用云开发能力之前需要先开通云开发。在开发者工具工具栏左侧，点击 “云开发” 按钮即可打开云控制台、根据提示开通云开">
+<meta name="keywords" content="基础,微信小程序,小程序云开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序云云开发之云函数">
+<meta property="og:url" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/index.html">
+<meta property="og:site_name" content="When I think of you, I smile.">
+<meta property="og:description" content="写在前面 无需自建服务器     在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码 基本上 所有得操作都可以在云函数上使用 定时任务  个人开发者函数个数有限制，所以尽量类似得函数写一起。  新建小程序新建小程序得时候选择云开发模式创建了第一个云开发小程序后，在使用云开发能力之前需要先开通云开发。在开发者工具工具栏左侧，点击 “云开发” 按钮即可打开云控制台、根据提示开通云开">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/1.png">
+<meta property="og:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/2.png">
+<meta property="og:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/3.jpg">
+<meta property="og:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/4.jpg">
+<meta property="og:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/ruizhi.png">
+<meta property="og:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/scan_code.jpg">
+<meta property="og:updated_time" content="2019-08-29T08:25:20.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序云云开发之云函数">
+<meta name="twitter:description" content="写在前面 无需自建服务器     在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码 基本上 所有得操作都可以在云函数上使用 定时任务  个人开发者函数个数有限制，所以尽量类似得函数写一起。  新建小程序新建小程序得时候选择云开发模式创建了第一个云开发小程序后，在使用云开发能力之前需要先开通云开发。在开发者工具工具栏左侧，点击 “云开发” 按钮即可打开云控制台、根据提示开通云开">
+<meta name="twitter:image" content="https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="When I think of you, I smile." type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.png">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/jquery-ui-1.10.3.min.js"></script>
+  <script src="/js/jquery.fullpage.min.js"></script>
+  <script src="/js/head.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/jquery.fullpage.min.css" >
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+  <script type="text/javascript">
+    var a_idx = 0;
+   
+    jQuery(document).ready(function ($) {
+        $("body").click(function (e) {
+          var a = new Array("富强", "Prosperity", "民主", "Democracy", "文明", "Civility", "和谐", "Harmony", "自由", "Freedom", "平等", "Equality", "公正", "Justice", "法治", "Rule of Law", "爱国", "Patriotism", "敬业", "Dedication", "诚信", "Integrity", "友善", "Friendship");
+          var $i = $("<span/>").text(a[a_idx]); a_idx = (a_idx + 1) % a.length; var x = e.pageX, y = e.pageY;
+          var selectColor = "#fff";
+          if (!isHomePage()) {
+            var clickColor = ['#ff5f45', '#0798ec', '#fc6c7c', '#fec401', '#fecc7c', "#ff5f45"];
+            var index = Math.floor((Math.random() * clickColor.length));
+            selectColor = clickColor[index];
+          }
+
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": selectColor,
+            "font-size": "20px"
+          });
+          $("body").append($i);
+          $i.animate({
+            "top": y - 180,
+            "opacity": 0
+          }, 2000, function () { $i.remove(); });
+        });
+
+        function isHomePage() {
+          var localUrl = window.location.href;
+          https://www.dwxqnswxl.cn/(|#page(1|2|3|4|5|6|7|8|9))
+          var regex = new RegExp("^https?://(test-)?(www|blog)\.dwxqnswxl.cn((/?|/index[(.|_)].*|/?[?].*)|(/#page[0-9]$))$", "i");
+          return regex.test(localUrl);
+      }
+    });
+
+   
+  </script>
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div id="container">  
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 10px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="62px" alt="Hike News" src="/css/images/mylogo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cool">Cool</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+<article id="post-WC00000001" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      微信小程序云云开发之云函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/07/15/WC00000001/" class="article-date">
+	  <time datetime="2019-07-15T03:10:18.000Z" itemprop="datePublished">2019-07-15</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/WeChat/">WeChat</a><a class="article-category-link" href="/categories/WeChat/小程序/">小程序</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><ul>
+<li>无需自建服务器    </li>
+<li>在云端运行的代码，微信私有协议天然鉴权，开发者只需编写自身业务逻辑代码</li>
+<li>基本上 所有得操作都可以在云函数上使用</li>
+<li>定时任务 </li>
+<li>个人开发者函数个数有限制，所以尽量类似得函数写一起。</li>
+</ul>
+<h1 id="新建小程序"><a href="#新建小程序" class="headerlink" title="新建小程序"></a>新建小程序</h1><p>新建小程序得时候选择云开发模式<br><img src="/2019/07/15/WC00000001/1.png" title="云开发"><br>创建了第一个云开发小程序后，在使用云开发能力之前需要先开通云开发。在开发者工具工具栏左侧，点击 “云开发” 按钮即可打开云控制台、根据提示开通云开发、创建云环境。默认配额下可以创建两个环境，各个环境相互隔离，每个环境都包含独立的数据库实例、存储空间、云函数配置等资源。每个环境都有唯一的环境 ID 标识，初始创建的环境自动成为默认环境。</p>
+<p>注：AppID 首次开通云环境后，需等待大约 10 分钟方可正常使用云 API，在此期间官方后台服务正在做准备服务，如尝试在小程序中调用云 API 则会报 cloud init error：{ errMsg: “invalid scope” } 的错误</p>
+<p>选择之后默认会给你建一个 cloudfunctions 云函数文件夹 里面会有一些实例<br>下面这个是云函数 直接获取openid 在云函数中获取然后返回</p>
+<h2 id="初始化之后指定默认环境"><a href="#初始化之后指定默认环境" class="headerlink" title="初始化之后指定默认环境"></a>初始化之后指定默认环境</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 app.js 文件中</span></span><br><span class="line"><span class="comment">// 环境不一样 云函数 都不一样 都需要单独上传</span></span><br><span class="line"> <span class="keyword">if</span> (!wx.cloud) &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(<span class="string">'请使用 2.2.3 或以上的基础库以使用云能力'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">/**qaq-uau6p  */</span></span><br><span class="line">      wx.cloud.init(&#123;</span><br><span class="line">        env: <span class="string">"cyq-dev-amyvi"</span>,</span><br><span class="line">        traceUser: <span class="literal">true</span>,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="云函数登陆示例"><a href="#云函数登陆示例" class="headerlink" title="云函数登陆示例"></a>云函数登陆示例</h1><h2 id="云函数"><a href="#云函数" class="headerlink" title="云函数"></a>云函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="comment">// 写好云函数之后直接右键上传并部署</span></span><br><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line">exports.main = <span class="function">(<span class="params">event, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 这里获取到的 openId、 appId 和 unionId 是可信的，注意 unionId 仅在满足 unionId 获取条件时返回</span></span><br><span class="line">  <span class="keyword">let</span> &#123; OPENID, APPID, UNIONID &#125; = cloud.getWXContext()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    OPENID,</span><br><span class="line">    APPID,</span><br><span class="line">    UNIONID,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/07/15/WC00000001/2.png" title="云开发">
+<h2 id="登陆云函数调用"><a href="#登陆云函数调用" class="headerlink" title="登陆云函数调用"></a>登陆云函数调用</h2><p><a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/reference-client-api/functions/callFunction.html" target="_blank" rel="noopener">wx.cloud.callFunction</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码中直接调用 对应相应得name 就是创建时候上传云函数名称 </span></span><br><span class="line"><span class="comment">// 使用函数  wx.cloud.callFunction</span></span><br><span class="line"><span class="keyword">const</span> loginFunction = <span class="function">(<span class="params">userInfoID</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    wx.cloud.callFunction(&#123;</span><br><span class="line">      name: <span class="string">'login'</span>,</span><br><span class="line">      data: &#123;</span><br><span class="line">        userInfoData: wx.cloud.CloudID(userInfoID)</span><br><span class="line">      &#125;,</span><br><span class="line">      success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">//返回  OPENID, APPID, UNIONID,</span></span><br><span class="line">          <span class="built_in">console</span>.log(res)</span><br><span class="line">      &#125;,</span><br><span class="line">      fail: <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(err)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="获取微信运动步数示例"><a href="#获取微信运动步数示例" class="headerlink" title="获取微信运动步数示例"></a>获取微信运动步数示例</h1><h2 id="wx-getWeRunData"><a href="#wx-getWeRunData" class="headerlink" title="wx.getWeRunData"></a>wx.getWeRunData</h2><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/werun/wx.getWeRunData.html" target="_blank" rel="noopener">wx.getWeRunData</a> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先获取运动步数 加密数据</span></span><br><span class="line">wx.getWeRunData(&#123;</span><br><span class="line">  success (res) &#123;</span><br><span class="line">    <span class="comment">// 拿 encryptedData 到开发者后台解密开放数据</span></span><br><span class="line">    <span class="keyword">const</span> encryptedData = res.encryptedData</span><br><span class="line">    <span class="comment">// 或拿 cloudID 通过云调用直接获取开放数据</span></span><br><span class="line">    <span class="keyword">const</span> cloudID = res.cloudID</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="调用云函数"><a href="#调用云函数" class="headerlink" title="调用云函数"></a>调用云函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 然后通过调用云函数 自动鉴权 解密运动步数</span></span><br><span class="line">wx.getWeRunData(&#123;</span><br><span class="line">      success(res) &#123;</span><br><span class="line">        <span class="keyword">const</span> cloudID = res.cloudID</span><br><span class="line">        wx.cloud.callFunction(&#123;</span><br><span class="line">          name: <span class="string">'openapi'</span>,</span><br><span class="line">          data: &#123;</span><br><span class="line">            action: <span class="string">'getWeRunAllData'</span>,</span><br><span class="line">            weRunData: wx.cloud.CloudID(cloudID),</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 将步数日期 时间戳转一波</span></span><br><span class="line">          res.result.map(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> date = util.timeStampToTimeV0(data.timestamp);</span><br><span class="line">            data.date = (date.getMonth() + <span class="number">1</span>) + <span class="string">'.'</span> + date.getDate()</span><br><span class="line">          &#125;)</span><br><span class="line">          that.setData(&#123;</span><br><span class="line">            stepInfoList: res.result</span><br><span class="line">          &#125;)</span><br><span class="line">          selectChart.changeData(res.result)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      fail(res) &#123;</span><br><span class="line">        wx.showModal(&#123;</span><br><span class="line">          title: <span class="string">'提示'</span>,</span><br><span class="line">          content: <span class="string">'未获得授权，获取步数失败'</span>,</span><br><span class="line">          showCancel: <span class="literal">true</span>,</span><br><span class="line">          confirmText: <span class="string">'去授权'</span>,</span><br><span class="line">          cancelText: <span class="string">'知道了'</span>,</span><br><span class="line">          success(res) &#123;</span><br><span class="line">            <span class="keyword">if</span> (res.confirm) &#123;</span><br><span class="line">              wx.openSetting()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 返回数据</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"stepInfoList"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"timestamp"</span>: <span class="number">1445866601</span>,</span><br><span class="line">      <span class="attr">"step"</span>: <span class="number">100</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"timestamp"</span>: <span class="number">1445876601</span>,</span><br><span class="line">      <span class="attr">"step"</span>: <span class="number">120</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="云函数-1"><a href="#云函数-1" class="headerlink" title="云函数"></a>云函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 云函数入口函数</span></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">switch</span> (event.action) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'getWeRunData'</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span> getWeRunData(event)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'getWeRunAllData'</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span> getWeRunAllData(event)</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">default</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getWeRunAllData</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 这里自动将 cloudID 所带得数据解析</span></span><br><span class="line">  <span class="keyword">let</span> stepInfoList = event.weRunData.data.stepInfoList</span><br><span class="line">  <span class="keyword">return</span> stepInfoList</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getWeRunData</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> stepInfoList = event.weRunData.data.stepInfoList</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> stepInfoList[stepInfoList.length <span class="number">-1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="发送通知模板示例"><a href="#发送通知模板示例" class="headerlink" title="发送通知模板示例"></a>发送通知模板示例</h1><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul>
+<li>需要先在微信公共平台-模板库选取模板或者自己申请模板，配置模板-&gt;最后获取配置模板ID</li>
+<li>页面的 form 组件，属性 report-submit 为 true 时，可以声明为需要发送模板消息，此时点击按钮提交表单可以获取 formId，用于发送模板消息。或者当用户完成 支付行为，可以获取 prepay_id 用于发送模板消息。</li>
+<li>当用户在小程序内发生过提交表单行为且该表单声明为要发模板消息的，开发者需要向用户提供服务时，可允许开发者向用户在7天内推送有限条数的模板消息（1次提交表单可下发1条，多次提交下发条数独立，相互不影响） 根据微信文档，消息模板必须用户有过提交才能对他进行发消息提醒。而且七天内过期。</li>
+<li><p>云开发工具不能获取formid 必须在真机上。</p>
+<img src="/2019/07/15/WC00000001/3.jpg" title="云开发">
+</li>
+</ul>
+<h2 id="获取-formID"><a href="#获取-formID" class="headerlink" title="获取 formID"></a>获取 formID</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// wxml </span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"weui-btn-area"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"weui-btn"</span> <span class="attr">style</span>=<span class="string">"background-color:#1589eb;color:white"</span> <span class="attr">form-type</span>=<span class="string">"submit"</span>&gt;</span>打卡申请<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提交js</span></span><br><span class="line">applyStep: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获取formid 可以先保存起来</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.detail.formId)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="云函数-2"><a href="#云函数-2" class="headerlink" title="云函数"></a>云函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 这个是我自己选取得模板ID</span></span><br><span class="line"><span class="keyword">const</span> &#123; INVITED, APPLY, AUTH &#125; = &#123;</span><br><span class="line">  AUTH: <span class="string">'MxXKepCWK-yLzCXe5fWW177gE2GXWW-BmNDMw2*****'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 云函数入口函数</span></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="keyword">switch</span> (event.action) &#123;</span><br><span class="line">    ···</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'auth'</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span> sendAuth(event)</span><br><span class="line">    &#125;</span><br><span class="line">    ···</span><br><span class="line">    <span class="keyword">default</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个模板是发送审核后得结果 </span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">sendAuth</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> sendResult = <span class="keyword">await</span> cloud.openapi.templateMessage.send(&#123;</span><br><span class="line">    <span class="comment">// openid </span></span><br><span class="line">    touser: event.touser,</span><br><span class="line">    <span class="comment">// 模板id</span></span><br><span class="line">    templateId: AUTH,</span><br><span class="line">    <span class="comment">// formid 必须是之前有过提交得交易或者付款交易 获得id</span></span><br><span class="line">    formId: event.formId,</span><br><span class="line">    <span class="comment">// 跳转得页面</span></span><br><span class="line">    page: <span class="string">'pages/Job/Job?JobId='</span>+ event.JobId + <span class="string">'&amp;uid='</span> + event.touser,</span><br><span class="line">    <span class="comment">// 配置模板显示得字段</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      keyword1: &#123;</span><br><span class="line">        value: event.inviteName,</span><br><span class="line">      &#125;,</span><br><span class="line">      keyword2: &#123;</span><br><span class="line">        value: event.date,</span><br><span class="line">      &#125;,</span><br><span class="line">      keyword3: &#123;</span><br><span class="line">        value: event.result,</span><br><span class="line">      &#125;,</span><br><span class="line">      keyword4: &#123;</span><br><span class="line">        value: event.content,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sendResult</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">wx.cloud.callFunction(&#123;</span><br><span class="line">    name: <span class="string">'openapi'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        action: <span class="string">'auth'</span>,</span><br><span class="line">        formId: formId,</span><br><span class="line">        touser: touser,</span><br><span class="line">        JobId: JobId,</span><br><span class="line">        inviteName: inviteName,</span><br><span class="line">        date: util.formatDateTime(<span class="keyword">new</span> <span class="built_in">Date</span>()),</span><br><span class="line">        result: result,</span><br><span class="line">        content: <span class="keyword">this</span>.data.applyTextarea</span><br><span class="line">    &#125;,</span><br><span class="line">    success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.warn(<span class="string">'[云函数] [openapi] templateMessage.send 调用成功：'</span>, res)</span><br><span class="line">    &#125;,</span><br><span class="line">    fail: <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">'[云函数] [openapi] templateMessage.send 调用失败：'</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+  <img src="/2019/07/15/WC00000001/4.jpg" title="云开发">
+<h1 id="云函数-定时触发器"><a href="#云函数-定时触发器" class="headerlink" title="云函数-定时触发器"></a>云函数-定时触发器</h1><p><a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/functions/triggers.html" target="_blank" rel="noopener">定时触发器</a> </p>
+<h2 id="config-json"><a href="#config-json" class="headerlink" title="config.json"></a>config.json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 新建 config.json 在云函数文件夹中</span><br><span class="line">&#123;</span><br><span class="line">  // triggers 字段是触发器数组，目前仅支持一个触发器，即数组只能填写一个，不可添加多个</span><br><span class="line">  &quot;triggers&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      // name: 触发器的名字，规则见下方说明</span><br><span class="line">      &quot;name&quot;: &quot;myTrigger&quot;,</span><br><span class="line">      // type: 触发器类型，目前仅支持 timer (即 定时触发器)</span><br><span class="line">      &quot;type&quot;: &quot;timer&quot;,</span><br><span class="line">      // config: 触发器配置，在定时触发器下，config 格式为 cron 表达式，规则见下方说明</span><br><span class="line">      &quot;config&quot;: &quot;0 0 2 1 * * *&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">// 在云函数得文件夹右键 上传触发器就可以了 如果cron表达式写错了会提示，但是感觉有时候写对了也提示错误。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>/5 </em> <em> </em> <em> </em> * 表示每5秒触发一次</li>
+<li>0 0 2 1 <em> </em> * 表示在每月的1日的凌晨2点触发</li>
+<li>0 15 10 <em> </em> MON-FRI * 表示在周一到周五每天上午10:15触发</li>
+<li>0 0 10,14,16 <em> </em> <em> </em> 表示在每天上午10点，下午2点，4点触发</li>
+<li>0 <em>/30 9-17 </em> <em> </em> * 表示在每天上午9点到下午5点内每半小时触发</li>
+<li>0 0 12 <em> </em> WED * 表示在每个星期三中午12点触发</li>
+</ul>
+<h2 id="云函数-3"><a href="#云函数-3" class="headerlink" title="云函数"></a>云函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 云函数入口文件</span></span><br><span class="line"><span class="keyword">const</span> cloud = <span class="built_in">require</span>(<span class="string">'wx-server-sdk'</span>)</span><br><span class="line">cloud.init()</span><br><span class="line"><span class="keyword">const</span> db = cloud.database();</span><br><span class="line"><span class="comment">// 云函数入口函数</span></span><br><span class="line">exports.main = <span class="keyword">async</span> (event, context) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 可以根据业务 查询库里得任务啊等做业务操作</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> db.collection(<span class="string">"Test"</span>).add(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">      timestamp: <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="小程序示例"><a href="#小程序示例" class="headerlink" title="小程序示例"></a>小程序示例</h1><p>  小程序代码<a href="https://github.com/pzwdshxzt/wechat-ruizhi" target="_blank" rel="noopener">睿智小程序</a> </p>
+<hr>
+  <img src="/2019/07/15/WC00000001/ruizhi.png" title="云开发">
+<hr>
+<h1 id="扫码体验"><a href="#扫码体验" class="headerlink" title="扫码体验"></a>扫码体验</h1><hr>
+  <img src="/2019/07/15/WC00000001/scan_code.jpg" title="云开发">
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/css/images/wechat.png',
+  alipayImage: '/css/images/alipay.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>Huangjinxing</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2019/07/15/WC00000001/" target="_blank" title="微信小程序云云开发之云函数">https://blog.dwxqnswxl.cn/2019/07/15/WC00000001/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/25/JC00000007/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Springboot 整合 swagger</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建小程序"><span class="nav-number">2.</span> <span class="nav-text">新建小程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化之后指定默认环境"><span class="nav-number">2.1.</span> <span class="nav-text">初始化之后指定默认环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#云函数登陆示例"><span class="nav-number">3.</span> <span class="nav-text">云函数登陆示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#云函数"><span class="nav-number">3.1.</span> <span class="nav-text">云函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登陆云函数调用"><span class="nav-number">3.2.</span> <span class="nav-text">登陆云函数调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取微信运动步数示例"><span class="nav-number">4.</span> <span class="nav-text">获取微信运动步数示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wx-getWeRunData"><span class="nav-number">4.1.</span> <span class="nav-text">wx.getWeRunData</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用云函数"><span class="nav-number">4.2.</span> <span class="nav-text">调用云函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云函数-1"><span class="nav-number">4.3.</span> <span class="nav-text">云函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发送通知模板示例"><span class="nav-number">5.</span> <span class="nav-text">发送通知模板示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提示"><span class="nav-number">5.1.</span> <span class="nav-text">提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取-formID"><span class="nav-number">5.2.</span> <span class="nav-text">获取 formID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云函数-2"><span class="nav-number">5.3.</span> <span class="nav-text">云函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用"><span class="nav-number">5.4.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#云函数-定时触发器"><span class="nav-number">6.</span> <span class="nav-text">云函数-定时触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#config-json"><span class="nav-number">6.1.</span> <span class="nav-text">config.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云函数-3"><span class="nav-number">6.2.</span> <span class="nav-text">云函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小程序示例"><span class="nav-number">7.</span> <span class="nav-text">小程序示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扫码体验"><span class="nav-number">8.</span> <span class="nav-text">扫码体验</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      <!--  -->
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2016 - 2019 When I think of you, I smile. All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+      
+    </div>
+
+    
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cool" class="mobile-nav-link">Cool</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-124580586-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+	<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6e73f99d7690f3d6659d4522f6b5aea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            When I think of you, I smile.
+          </div>
+          <div class="panel-body">
+            Copyright © 2019 Huangjinxing All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+    
+   
+  
+</body>
+</html>
